@@ -1,0 +1,67 @@
+<!--{include header}-->
+	<div style="background-color:#A2DEF0;">
+<div id="dashboard" style="background-color:#40bdab;border-bottom: 2px #fbf3cf solid;">
+	<table style="width:100%;font-size:12px">
+		<tr>${current_forum('null')}</tr>
+	</table>
+</div> 
+<div style="background-color: #44abaf; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+	<span style="margin: 0px; font-weight: bold; font-size: 20px;">トピックス新規作成</span>
+</div>
+<div style="background-color:#A2DEF0">
+	<form id="forum-new-form" method="post" class="validator">
+		<div style="padding: 5px 10px">投稿先</div> 
+		<div style="padding: 0px 5px">
+		<table style="width:100%">
+			<tr>
+				<td>
+					<select name='category' style="width:100%;font-size: 14px" >
+					<optgroup label="掲示板＠" style="width:100%">
+					<option value="city">{$city['name']}</option>
+					</optgroup>
+					<optgroup label="全国掲示板">
+					${Utility::Option($publics, $id)}
+					</optgroup>
+					</select>
+				</td>
+         	</tr>
+        </table>
+		</div>
+		<div style="padding: 5px 10px">トピックス</div> 
+		<div style="padding: 0px 5px;">
+		<table style="width:100%">
+			<tr>
+				<td>
+			<input type="text" style="width:100%;font-size: 14px" name="title" id="team-create-style"  value="" datatype="require" require="true"/>
+				</td>
+         	</tr>
+         </table>
+		</div>
+		<div style="padding: 5px 10px">内容</div> 
+		<div style="padding: 0px 5px;">
+		<table style="width:100%">
+			<tr>
+				<td>
+				<textarea style="width:100%;height:100px;border-color:#7C7C7C #C3C3C3 #DDDDDD;
+                               border-style:solid;border-width:1px;font-size:14px" 
+                               name="content" id="forum-new-content" class="f-textarea" datatype="require" require="true"></textarea>
+         		</td>
+         	</tr>
+         </table>
+		</div>
+		<div style="clear:left;padding:0 10px 10px;margin-left:5px;">
+		<table style="width:100%">
+			<tr>
+				<td>
+			<input  style="font-size: 14px;width:60px" 
+                                type="submit" value="投稿" name="commit" id="leader-submit"/>
+				</td>
+         	</tr>
+         	
+         </table>
+		</div>
+	</form>
+</div>
+</div>
+
+<!--{include footer}-->

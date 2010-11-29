@@ -1,0 +1,25 @@
+<div id="deal-share">
+	<div class="deal-share-top">
+		<div class="deal-share-links">
+			<h4>シェア：</h4>
+			<ul class="cf">
+            <li>
+                <a href="http://www.facebook.com/sharer.php?u={$INI['system']['wwwprefix']}/team.php?id={$team['id']}" target="_blank"><img src="/static/img/fb_ic.png" />Facebook</a>
+            </li>
+			<li>
+				<a href="http://mixi.jp/recent_voice.pl" target="_blank"><img src="/static/img/mixi_ic.png" />mixi</a>
+			</li>
+			<li>
+				<a href="http://twitter.com/home?status={$team['title']}+%23{$INI['system']['wwwprefix']}/team.php?id={$team['id']}" ><img src="/static/img/tw_ic.png" />Twitter</a>
+			</li>
+			<li>
+				<a href="${share_mail($team)}" id="deal-buy-mailto"><img src="/static/img/ml_ic.png" />メール</a>
+			</li>
+			<!-- AddThis Button BEGIN -->
+				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4c63a5f76257973d"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4c63a5f76257973d"></script>
+			<!-- AddThis Button END -->
+			</ul>
+		</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,83 @@
+<!--{include header}-->
+
+<div id="dashboard" style="background-color:#40bdab;border-bottom: 2px #fbf3cf solid;">
+	<table style="width:100%;font-size:12px">
+		<tr>${current_forum('null')}</tr>
+	</table>
+</div>  
+
+<div style="background-color:#A2DEF0">
+    <div style="background-color: #44abaf; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+        <span style="margin: 0px; font-weight: bold; font-size: 20px;">${htmlspecialchars($topic['title'])}</span>
+	</div>
+	<div style="font-size:14px;">
+		<table width="100%"  style="background-color: #507fc6;">
+			<tr>
+				<td style="background-color: #507fc6;font-size: 14px;width:60%;height:18px">
+					<div style="padding-left:5px"><b>{$users[$topic['user_id']]['username']}</b></div>
+				</td>
+				<td style="background-color: #507fc6;font-size: 14px;width:40%;text-align: right;;height:18px">
+				<div style="padding-right:5px">${Utility::HumanTime($topic['create_time'])}</div>
+				</td>
+			</tr>
+		</table>
+		<table width="100%"  style="background-color: #A2DEF0;">
+			<tr>
+				<td style="background-color: #A2DEF0;font-size: 14px;">
+					<div style="padding:5px 5px">${nl2br(htmlspecialchars($topic['content']))}</div>
+				</td>
+			</tr>
+		</table>
+			<!--{loop $replies $one}-->
+			<table width="100%" style="background-color: #507fc6;">
+			<tr>
+				<td style="background-color: #507fc6;font-size: 14px;width:60%;height:18px">						
+					<div style="padding-left:5px"><b>{$users[$one['user_id']]['username']}</b></div>
+				</td>
+				<td style="background-color: #507fc6;font-size: 14px;width:40%;text-align: right;;height:18px">
+				<div style="padding-right:5px">${Utility::HumanTime($one['create_time'])}</div>
+				</td>
+			</tr>
+		</table>
+		<table width="100%" style="background-color: #A2DEF0;">
+			<tr>
+				<td style="background-color: #A2DEF0;font-size: 14px;">
+					<div style="padding:5px 5px">${nl2br(htmlspecialchars($one['content']))}</div>
+				</td>
+			</tr>
+		</table>
+			<!--{/loop}-->
+		<table width="100%">
+			<tr>
+				<td style="background-color:#20b8d4; color: #fbf3cf; font-size: 12px; font-weight: bold; text-align: center;line-height: 22px">{$pagestring}</td>
+			</tr>
+		</table>	
+	</div>
+	<div style="padding: 5px 10px" id="reply">
+		返信する
+	</div>
+	<div>
+		<!--{if is_login()}-->
+		<form id="forum-reply-form" method="post" action="/forum/topic.php?id={$topic['id']}">
+			<input type="hidden" name="parent_id" value="{$topic['id']}" />
+			<table style="text-align: center">
+				<tr>
+					<td>
+					<textarea style="width:90%;height:100px;position:relative;position:0 10px 10px;float:left" name="content" id="forum-new-content" require="true" datatype="require"></textarea>
+					</td>
+				</tr>
+			</table>
+			<div style="padding :10px 15px 10px ">
+			
+				<input type="submit" style="width:40px" value="登録" name="commit" id="leader-submit"/>
+			
+			</div>
+		</form>
+		<!--{else}-->
+			先に<a href="/account/login.php?r={$currefer}">ログイン</a>または
+			<a href="/account/signup.php">新規登録</a>後にご利用ください。
+		<!--{/if}-->
+	</div>
+</div>
+
+<!--{include footer}-->

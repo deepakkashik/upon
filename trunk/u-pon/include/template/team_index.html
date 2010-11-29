@@ -1,0 +1,48 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="recent-deals">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>過去のクーポン：{$city['name']}</h2></div>
+				<div class="sect">
+					<ul class="deals-list">
+					<!--{loop $teams $index $one}-->
+						<li class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+							<p class="time">${date('Y年n月j日', $one['begin_time'])}</p>
+							<div class="pic">
+								<div class="{$one['picclass']}"></div>
+								<a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank"><img alt="{$one['title']}" src="${team_image($one['image'])}" width="200" height="121"></a>
+							</div>
+							<div class="info">
+								<h4><a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank">{$one['title']}</a></h4>
+								<p class="total"><strong class="count">{$one['now_number']}</strong>名様が購入済み</p>
+								<p class="price">
+									通常価格：<strong class="old"><span class="money">{$currency}</span>${number_format($one['market_price'])}</strong>
+									<br />割引率：<strong class="discount">${round(100-100*$one['team_price']/$one['market_price'])}%</strong>
+									<br />販売価格：<strong><span class="money">{$currency}</span>${number_format($one['team_price'])}</strong>
+									<br />割引額：<strong><span class="money">{$currency}</span>${number_format($one['market_price']-$one['team_price'])}</strong>
+									<br />
+								</p>
+							</div>
+						</li>
+					<!--{/loop}-->
+					</ul>
+					<div class="clear"></div>
+					<div>{$pagestring}</div>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+	<div id="sidebar">
+		<!--{include block_side_subscribe}-->
+	</div>
+</div>
+    </div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

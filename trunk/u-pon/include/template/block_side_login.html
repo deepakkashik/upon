@@ -1,0 +1,44 @@
+<div class="sbox">
+<div class="sbox-top"></div>
+<div class="sbox-content">
+<div class="side-tip">
+	<h2>ソーシャルIDでログイン</h2>
+		<hr>
+		<p>{$INI['system']['abbreviation']}はfacebookのIDでもログイン可能です。IDお持ちのサイトのロゴをクリックして下さい。</p>
+	      	
+	      	<span >
+	                <div>
+		                    <p><fb:login-button autologoutlink="true" 
+		                    	onlogin="window.location.href='/upon/account/facebook.php';"
+		                    	perms="email"></fb:login-button></p>
+				    		<!-- <p><a href="/account/twitterlogin.php" ><img src="http://a0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png"></img></a></p> -->
+				    <div id="fb-root"></div>
+				    <script>
+				      window.fbAsyncInit = function() {
+				        FB.init({appId: '144033315615787', status: true, cookie: true,
+				                 xfbml: true});
+				                 
+				        FB.logout(function(response) {
+  						// user is now logged out
+  						//alert("logged out~~!");
+					});
+
+				        
+				        };
+				      (function() {
+				        var e = document.createElement('script');
+				        e.type = 'text/javascript';
+				        e.src = document.location.protocol +
+				          '//connect.facebook.net/ja_JP/all.js';
+				        e.async = true;
+				        document.getElementById('fb-root').appendChild(e);
+				      }());
+				    </script>
+	                	</div>
+                </span>
+                
+		
+</div>
+</div>
+<div class="sbox-bottom"></div>
+</div>

@@ -1,0 +1,34 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c"
+	style="width: 380px;">
+<h3><span id="order-pay-dialog-close" class="close"
+	onclick="X.get( WEB_ROOT + '/ajax/unset.php');return X.boxClose(); ">Close</span>{$INI['system']['couponname']}確認システム</h3>
+	
+	
+	<!--{if $link_error=Session::Get('link_error',true)}-->
+		<div  id="sysmsg-error">
+			<div >
+				<p>{$link_error}</p>
+			</div>
+		</div> 
+	<!--{/if}-->
+	<form action="/ajax/link.php" method="post">
+	<p class="info" id="link-dialog-display-id">{$INI['system']['abbreviation']}のアカウントの見付けました。<br /></p>
+	<div class="contenth">{$carrierusername}@Twitter</div>
+	<div class="contenth">{$email}の{$INI['system']['abbreviation']}のアカウント</div>
+	<div style="height: 30px">&nbsp</div>
+	<div class="contenth">{$INI['system']['abbreviation']}のパスワード：</div>
+	<div class="contentc">
+		<input id="link-dialog-input-facebook" type="password" name="twitter_password"
+		style="text-transform: uppercase;" class="f-input" maxLength="8"
+		/>
+	</div>
+		<input type="hidden" name="action_query" value="twitter_password_query"/>
+	<div style="height: 50px">&nbsp</div>
+	<div class="button">
+		<input id="link-dialog-query" class="formbutton"
+		value="送信" name="update" type="submit">&nbsp;&nbsp;&nbsp;
+		
+	</div>
+	<div style="height: 20px">&nbsp</div>
+	</form>
+</div>

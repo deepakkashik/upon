@@ -1,0 +1,65 @@
+<!--{include header}-->
+<div id="content" style="width: 100%; font-family: arial, sans-serif;" >
+<div id="dashboard" style="background-color:#40bdab;border-bottom: 2px #fbf3cf solid;">
+    <table style="width:100%;font-size:12px;" >
+		<tr>${current_MyPage1('index')}</tr>
+		<tr>${current_MyPage2('index')}</tr>		
+	</table>
+	</div>
+	
+	<div id="content" style="width: 100%; font-family: arial, sans-serif;" >
+	<div style="background-color: #44abaf; padding: 6px 10px;">
+		<span style="margin: 0px;font-weight:bold;font-size: 20px;">マイオーダー</span>
+	</div>
+
+	<!--{loop $orders $index $one}-->
+	<div style="margin: 3px; ">
+		<div style="background-color: #a2def0; padding: 5px; font-weight: bold;">
+			<table style="width: 100%; font-size: 12px;">
+				<tr>
+			<td style="text-align: left;"><a
+			>{$teams[$one['team_id']]['title']}</a></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div style="background-color: #a2def0; padding: 5px;">
+			<table style="width: 100%; font-size: 12px;">
+				<tr>
+					<td style="width: 55%;vertical-align: text-top">					
+					<div style="color: #000000; margin: 0px 0px;  font-size: 12px;">枚数:{$one['quantity']}枚</div>
+					</td>
+				</tr>	
+			
+				<tr>
+					<td style="width: 55%;vertical-align: text-top">					
+					<div style="color: #000000; margin: 0px 0px;  font-size: 12px;">価格(円):<span class="money">{$currency}</span>${moneyit($one['origin'])}円</div>
+					</td>
+					<td style="text-align: left;"><a
+					href="/team.php?id={$one['team_id']}">クーポン詳細</a>
+				</td>
+				</tr>
+				
+				<tr>
+					<td style="width: 55%;vertical-align: text-top">					
+					<div style="color: #000000; margin: 0px 0px;  font-size: 12px;">ステータス:<!--{if $one['state']=='pay'}-->支払済<!--{elseif $teams[$one['team_id']]['close_time']>0}-->期限切れ<!--{else}-->-<!--{/if}--><!--{/if}--></div>
+					</td>
+				
+				<td style="text-align: left;"><!--{if ($one['state']=='unpay'&&$teams[$one['team_id']]['close_time']==0)}--><a 
+					href="/order/check.php?id={$one['id']}">決済</a>
+					<!--{else}--><!--{/if}-->
+				</td>
+			
+				</tr>
+						
+			</table>
+		</div>
+	</div>
+	<!--{/loop}-->
+	<div style="background-color:#20b8d4; color: #ffffff; font-size: 12px; font-weight: bold; text-align: center;line-height: 22px">
+		{$pagestring}
+	</div>
+</div>
+</div>
+
+<!--{include footer}-->

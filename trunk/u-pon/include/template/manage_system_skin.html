@@ -1,0 +1,59 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('skin')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>システムのテーマ</h2></div>
+                <div class="sect">
+                    <form method="post">
+                    	<!--{if $INI['system']['mobileon']===1}-->
+							<div class="wholetip clear"><h3>1. デスクトップコンテンツのスキン設定</h3></div>
+						<!--{/if}-->                    	
+                        <div class="field">
+                            <label>テンプレートの切り替え</label>
+							<select name="skin[template]" class="f-input" style="width:200px;">${Utility::Option(ZSystem::GetTemplateList(), $INI['skin']['template'])}</select>
+							<span class="hint">テンプレートは [${DIR_ROOT}/template] に保存する事で、切替可能になります。</span>
+                        </div>
+                        <div class="field">
+                            <label>テーマの切り替え</label>
+							<select name="skin[theme]" class="f-input" style="width:200px;">${Utility::Option(ZSystem::GetThemeList(), $INI['skin']['theme'])}</select>
+							<span class="hint">テーマは [${WWW_ROOT}/static/theme] に保存する事で、切替可能になります。</span>
+                        </div>
+                        <!--{if $INI['system']['mobileon']===1}-->
+							<div class="wholetip clear"><h3>2. 携帯コンテンツのスキン設定</h3></div>
+	                        <div class="field">
+	                            <label>テンプレートの切り替え</label>
+								<select name="skin[template_m]" class="f-input" style="width:200px;">${Utility::Option(ZSystem::GetTemplateList_m(), $INI['skin']['template_m'])}</select>
+								<span class="hint">テンプレートは [${WWW_ROOT}/m/include/template] に保存する事で、切替可能になります。</span>
+	                        </div>
+	                        <div class="field">
+	                            <label>テーマの切り替え</label>
+								<select name="skin[theme_m]" class="f-input" style="width:200px;">${Utility::Option(ZSystem::GetThemeList_m(), $INI['skin']['theme_m'])}</select>
+								<span class="hint">テーマは [${WWW_ROOT}/m/static/theme] に保存する事で、切替可能になります。</span>
+	                        </div>
+	                    <!--{/if}--> 
+                        <div class="act">
+                            <input type="submit" value="適用" name="commit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

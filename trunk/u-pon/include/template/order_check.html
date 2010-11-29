@@ -1,0 +1,159 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="content">
+    <div id="deal-buy" class="box">
+        <div class="box-top"></div>
+        <div class="box-content">
+            <div class="head"><h2>購入内容の確認</h2></div>
+            <div class="sect">
+                <table class="order-table">
+                    <tr>
+                        <th class="deal-buy-desc">クーポン名称</th>
+                        <th class="deal-buy-quantity">枚数</th>
+                        <th class="deal-buy-multi"></th>
+                        <th class="deal-buy-price">価格</th>
+                        <th class="deal-buy-equal"></th>
+                        <th class="deal-buy-total">合計</th>
+                    </tr>
+                    <tr>
+                        <td class="deal-buy-desc">{$team['title']}</td>
+                        <td class="deal-buy-quantity">{$order['quantity']}</td>
+                        <td class="deal-buy-multi">x</td>
+                        <td class="deal-buy-price" id="deal-buy-price"><span class="money">{$currency}<span>${number_format($team['team_price'])}</td>
+                        <td class="deal-buy-equal">=</td>
+                        <td class="deal-buy-total" id="deal-buy-total"><span class="money">{$currency}</span>${number_format($order['quantity']*$team['team_price'])}</td>
+                    </tr>
+					<!--{if $team['delivery']=='express'}-->
+					<tr>
+						<td class="deal-buy-desc">配送</td>
+						<td class="deal-buy-quantity"></td>
+						<td class="deal-buy-multi"></td>
+						<td class="deal-buy-price"><span class="money">{$currency}</span><span id="deal-express-price">${number_format($team['fare'])}</span></td>
+						<td class="deal-buy-equal">=</td>
+						<td class="deal-buy-total"><span class="money">{$currency}</span><span id="deal-express-total">${number_format($team['fare'])}</span></td>
+					</tr>
+					<!--{/if}-->
+					<!--{if $order['card']>0}-->
+				   <tr id="cardcode-row">
+						<td class="deal-buy-desc">バウチャー：<span id="cardcode-row-n">{$order['card_id']}</span></td>
+						<td class="deal-buy-quantity"></td>
+						<td class="deal-buy-multi"></td>
+
+						<td class="deal-buy-price"><span class="money">{$currency}</span>${number_format($order['card'])}</td>
+						<td class="deal-buy-equal">=</td>
+						<td class="deal-buy-total">-<span class="money">{$currency}</span><span id="cardcode-row-t">${number_format($order['card'])}</span></td>
+					</tr>
+					<!--{/if}-->
+
+					<tr class="order-total">
+                        <td class="deal-buy-desc"><strong>合計支払金額：</strong></td>
+                        <td class="deal-buy-quantity"></td>
+                        <td class="deal-buy-multi"></td>
+                        <td class="deal-buy-price"></td>
+                        <td class="deal-buy-equal">=</td>
+                        <td class="deal-buy-total"><span class="money">{$currency}</span>${number_format($order['origin'])}</td>
+                    </tr>
+                </table>
+			</div>
+		</div>
+		<div class="box-bottom"></div>
+	</div>
+    
+    <div id="deal-buy" class="box">
+	        <div class="box-top"></div>
+	        <div class="box-content">
+	            <div class="head"><h2>お客様の基本情報</h2></div>
+	            <div class="sect">
+	            <table class="order-table">
+	                <tr>
+	                    <td class="deal-buy-desc">お名前</td><td class="deal-buy-desc">〇〇 様</td>
+					</tr>
+					<tr>
+	                    <td class="deal-buy-desc">メールアドレス</td><td class="deal-buy-desc">xxxx@gmail.com</td>
+	                </tr>
+	                <tr>
+	                	<td class="deal-buy-desc">住所</td><td class="deal-buy-desc">〒212-0813<br/>東京都東京足立区４丁目１２番地西保木間
+	                	</td>
+	                </tr>
+	            </table>
+	            </div>
+	        </div>
+	        <div class="box-bottom"></div>
+	</div>        
+
+    <div id="deal-buy" class="box">
+	        <div class="box-top"></div>
+	        <div class="box-content">
+	            <div class="head"><h2>お支払情報</h2></div>
+	            <div class="sect">
+	            <table class="order-table">
+	                <tr>
+	                    <td class="deal-buy-desc">小計</td><td class="deal-buy-desc">${number_format($order['quantity']*$team['team_price'])}円</td>
+					</tr>
+	                <tr>
+	                    <td class="deal-buy-desc">合計金額</td><td class="deal-buy-desc">${number_format($order['quantity']*$team['team_price'])}円</td>
+					</tr>
+	                <tr>
+	                    <td class="deal-buy-desc">支払い方法</td><td class="deal-buy-desc">クレジットカード</td>
+					</tr>
+	                <tr>
+	                    <td class="deal-buy-desc">カード名義</td><td class="deal-buy-desc">〇〇〇〇</td>
+					</tr>
+	                <tr>
+	                    <td class="deal-buy-desc">カード番号</td><td class="deal-buy-desc">************2000</td>
+					</tr>
+	                <tr>
+	                    <td class="deal-buy-desc">有効期限</td><td class="deal-buy-desc">8/2012</td>	                    
+					</tr>
+	                <tr>
+	                    <td class="deal-buy-desc">セキュリティーコード</td><td class="deal-buy-desc">----</td>	                    
+					</tr>
+	            </table>
+				<div class="paytype">
+				
+                <form action="https://credit.j-payment.co.jp/gateway/payform.aspx" method="post" class="validator"><!-- /order/pay.php  https://credit.j-payment.co.jp/gateway/payform.aspx -->
+					<div class="order-check-form ">
+					
+					<INPUT TYPE="HIDDEN" NAME="aid" VALUE="103534">
+					<INPUT TYPE="HIDDEN" NAME="jb" VALUE="AUTH">
+					<INPUT TYPE="HIDDEN" NAME="am" VALUE="${moneyit($order['price']*$order['quantity'])}">
+					<INPUT TYPE="HIDDEN" NAME="tx" VALUE="0">
+					<INPUT TYPE="HIDDEN" NAME="sf" VALUE="0">
+					<input type="hidden" name="cod" value="{$order['id']}" /> 
+					<!--<input type="hidden" name="service" value="credit" />-->
+					<!--<input type="hidden" name="paytype" value="credit" />-->
+					
+					<!-- 	
+						<div class="clear"></div>
+						<p class="check-act">
+						<input type="hidden" name="order_id" value="{$order['id']}" />
+						<input type="hidden" name="team_id" value="{$order['team_id']}" />
+						<input type="hidden" name="cardcode" value="" />
+						<input type="hidden" name="quantity" value="{$order['quantity']}" />
+						<input type="hidden" name="address" value="{$order['address']}" />
+						<input type="hidden" name="express" value="{$order['express']}" />
+						<input type="hidden" name="remark" value="{$order['remark']}" />
+					-->
+						<p>※上記の内容でよろしければ、「決済実行」ボタンをクリックして、決済を行ってください。</p>
+						<input type="submit" value="決済実行" class="formbutton" /> <a href="/team/buy.php?id={$order['team_id']}" style="margin-left:1em;">ご注文画面に戻る</a>
+
+					</div>
+				</form>
+				</div>
+	            </div>
+	        </div>
+	        <div class="box-bottom"></div>
+	</div>        
+	
+</div>
+<div id="sidebar">
+
+
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

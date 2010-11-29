@@ -1,0 +1,93 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="settings">
+<div class="dashboard" id="dashboard">
+	<ul>${current_account('/account/settings.php')}</ul>
+</div>
+<div id="content" class="clear settings-box">
+<div class="box clear">
+<div class="box-top"></div>
+<div class="box-content">
+<div class="head"><h2>アカウント設定</h2></div>
+<div class="sect">
+	<form id="settings-form" method="post" action="/account/settings.php" enctype="multipart/form-data" class="validator">
+	<div class="wholetip clear">
+		<h3>1. 基本情報</h3>
+	</div>
+	<div class="field email">
+		<label>Email</label>
+		<input type="text" size="30" name="email" id="settings-email-address" class="f-input readonly" readonly="readonly" value="{$login_user['email']}" />
+	</div>
+	<div class="field">
+		<label>アバター</label>
+			<!--{if $login_user['avatar']}-->
+			<img src="${user_image($login_user['avatar'])}" style="float:left;margin-top:-10px;margin-right:10px;"/>
+			<!--{/if}-->
+			<input type="file" name="upload_image" id="settings-avatar" class="f-input" />
+			<span class="hint">512KB以内の画像ファイルを登録可能です</span>
+	</div>
+	<div class="field username">
+		<label>ID</label>
+		<input type="text" size="30" name="username" id="settings-username" class="f-input" value="{$login_user['username']}" require="true" datatype="limit" min="2" max="16" maxLength="16"/>
+	</div>
+	<div class="field password">
+		<label>新しいパスワード</label>
+		<input type="password" size="30" name="password" id="settings-password" class="f-input" />
+		<span class="hint">パスワードを変更しない場合はブランクにしてください</span>
+	</div>
+	<div class="field password">
+		<label>パスワード再入力</label>
+		<input type="password" size="30" name="password2" id="settings-password-confirm" class="f-input" />
+	</div>
+	<div class="field password">
+		<label>性別</label>
+		<select name="gender" class="f-city">${Utility::Option($option_gender, $login_user['gender'])}</select>
+	</div>
+	<div class="wholetip clear">
+		<h3>2. 連絡先情報</h3></div>
+                        <div class="field username">
+				<label>氏名</label>
+				<input type="text" size="30" name="realname" id="settings-realname" class="f-input" value="{$login_user['realname']}" />
+			</div>
+			<div class="field">
+				<label>郵便番号</label>
+				<input type="text" maxLength=7 size="10" name="zipcode" id="settings-zipcode" class="f-input number" value="{$login_user['zipcode']}" />
+			</div>
+			<div class="field username">
+				<label>現住所</label>
+				<input type="text" size="30" name="address" id="settings-address" class="f-input" value="{$login_user['address']}" /><BR>
+				<span class="hint">住所記入例：東京都港区新橋4-23-4オーツカビル2F</span>
+			</div>
+			<div class="field mobile">
+				<label>電話番号</label>
+				<input type="text" size="30" name="mobile" id="settings-mobile" class="number" value="{$login_user['mobile']}" /><span class="inputtip"></span>
+			</div>
+	</div>
+		<div class="wholetip clear">
+<h3>3. お知らせメール</h3></div>
+ 						<div class="field city">
+                            <label>エリア</label>
+							<select name="city_id" class="f-city">${Utility::Option(Utility::OptionArray($hotcities, 'id', 'name'), $login_user['city_id'])}<option value='0'>その他</option></select>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="act">
+                            <input type="submit" value="更新" name="commit" id="settings-submit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar" class="rail">
+		<!--<!--{include block_side_credit}-->-->
+		<!--{include block_side_profile}-->
+		<!--{include block_side_radar_experience}-->
+		<!--{include block_side_bar_experience}-->		
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

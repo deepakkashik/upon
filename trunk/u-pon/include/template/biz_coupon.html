@@ -1,0 +1,59 @@
+<!--{include biz_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+<div id="content" class="coupons-box clear mainwide">
+<div class="box clear">
+<div class="box-top"></div>
+<div class="box-content">
+<div class="head">
+<h2>{$INI['system']['couponname']}リスト</h2>
+<ul class="filter">
+	<li>
+	<form action="/biz/coupon.php" method="get">クーポン番号：<input
+		type="text" class="h-input" name="title"
+		value="${htmlspecialchars($title)}">&nbsp;<input
+		type="submit" value="選択" class="formbutton" style="padding: 1px 6px;" />
+	<form>
+	</li>
+</ul>
+</div>
+<div class="sect">
+<table id="orders-list" cellspacing="0" cellpadding="0" border="0"
+	class="coupons-table">
+	<tr>
+		<th width="100" nowrap>クーポン番号</th>
+		<th width="450">クーパン名</th>
+		<th width="160">ユーザー</th>
+		<th width="60" nowrap>認証キー</th>
+		<th width="100" nowrap>期限</th>
+		<th width="60">ステータス</th>
+	</tr>
+	<!--{loop $coupons $index $one}-->
+	<tr ${$index%2?'':'class="alt"'}>
+		<td>{$one['id']}</td>
+		<td>{$one['team_id']}&nbsp;(<a class="deal-title"
+			href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a>)</td>
+		<td nowrap>{$users[$one['user_id']]['email']}<br />
+		{$users[$one['user_id']]['username']}</td>
+		<td><!--{if abs(intval($INI['system']['partnerdown']))}-->{$one['secret']}<!--{else}-->******<!--{/if}--></td>
+		<td nowrap>${date('Y-m-d', $one['expire_time'])}</td>
+		<td nowrap><!--{if $one['consume']=='Y'}-->もう消費<!--{elseif $one['expire_time']<time()}-->もう期限が過ぎる<!--{else}-->有効<!--{/if}--></td>
+	</tr>
+	<!--{/loop}-->
+	<tr>
+		<td colspan="6">{$pagestring}</td>
+	</tr>
+</table>
+</div>
+</div>
+<div class="box-bottom"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- bd end --></div>
+<!-- bdw end -->
+
+<!--{include footer}-->
