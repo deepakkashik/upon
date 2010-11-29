@@ -1,0 +1,28 @@
+<!--{include header}-->
+
+<div id="content" style="width: 100%; font-family: arial, sans-serif;">       
+    <div style="background-color: #44abaf; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+        <span style="margin: 0px;font-weight:bold;font-size: 20px;">UPON確認システム</span>
+    </div>
+		<form id="login-form" method="post" action="/account/secret.php">
+		<div id="coupon-dialog-display-id" 
+			style="background-color:#a2dcf0; border-bottom: 2px #ffffff solid; padding: 2px 10px;font-size: 12px;">
+			<p style="font-weight: bold;">UPON確認システム</p>
+		   	クーポンIDと認証キーを入力してください。有効性の確認、および、クーポン利用登録が可能です。
+		<div><p><b>{$v}</b></p></div>
+		
+		    <div class="acl" id="aid">
+		 <label for="kuponid"><br>クーポンID： </label><br/>
+		 <input id="coupon-dialog-input-id" type="text" name="id" size="20" value="" />
+		</div>
+		<div class="bcl" id="bid">
+		 <label for="key"><br>認証キー：</label><br/>
+		 <input id="coupon-dialog-input-secret" type="text" name="secret" size="20" value="" />
+		</div>
+		<br />
+		<div><input type="submit" name="query" id="edit-submit" value="有効性確認"   /></div>
+		<div><input type="submit" name="consume" id="edit-submit" value="使用（認証キーが必要）"   /></div>
+		</div>
+		</form>
+</div>
+<!--{include footer}-->

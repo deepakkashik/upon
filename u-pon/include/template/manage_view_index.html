@@ -1,0 +1,75 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+<div class="dashboard" id="dashboard">
+<ul>${mcurrent_view('index')}</ul>
+</div>
+<div id="content" class="coupons-box clear mainwide">
+<div class="box clear">
+<div class="box-top"></div>
+<div class="box-content">
+<div class="head">
+<h2>View Team</h2>
+<!-- 
+<ul class="filter">
+	<li>
+	<form method="get">ユーザーEmail：<input type="text" name="uemail"
+		class="h-input" value="${htmlspecialchars($uemail)}">&nbsp;グループ購入番号：<input
+		type="text" name="team_id" class="h-input number" value="{$team_id}">&nbsp;<input
+		type="submit" value="選別" class="formbutton" style="padding: 1px 6px;" />
+	<form>
+	</li>
+</ul>
+ -->
+</div>
+<div class="sect">
+<table id="orders-list" cellspacing="0" cellpadding="0" border="0"
+	class="coupons-table">
+	<tr>
+		<th width="50" nowrap>ViewOrderUser</th>
+		<th width="40">ID</th>
+		<th width="50">user_id</th>
+		<th width="150">title</th>
+		<th width="50" nowrap>summary</th>
+		<th width="50" nowrap>city_id</th>
+		<th width="50" nowrap>group_id</th>
+		<th width="50" nowrap>partner_id</th>
+		<th width="50" nowrap>team_price</th>
+		<th width="50" nowrap>market_price</th>
+		
+	</tr>
+	<!--{loop $teams $index $one}-->
+	<tr ${$index%2?'':'class="alt" '} id="team-list-id-{$one['id']}">
+		<td>view</td>
+		
+		<td>
+			<a class="deal-title" href="/manage/view/allorder.php?id={$one['id']}" >{$one['id']}&nbsp;</a>
+		</td>			
+		<td>{$one['user_id']}&nbsp;
+		<td>{$one['title']}</td>
+		<td>{$one['summary']}</td>
+		<td>{$one['city_id']}</td>
+		<td>{$one['group_id']}</td>
+		<td>{$one['partner_id']}</td>	
+		<td><span class="money">{$currency}</span>${moneyit($one['team_price'])}</td>
+		<td><span class="money">{$currency}</span>${moneyit($one['market_price'])}</td>
+		
+	</tr>
+	<!--{/loop}-->
+	<tr>
+		<td colspan="9">{$pagestring}
+	</tr>
+</table>
+</div>
+</div>
+<div class="box-bottom"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- bd end --></div>
+<!-- bdw end -->
+
+<!--{include manage_footer}-->

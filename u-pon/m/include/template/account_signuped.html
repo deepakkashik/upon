@@ -1,0 +1,22 @@
+<!--{include header}-->
+<div style="background-color:#44abaf; padding: 10px 10px;border-bottom: 2px #fbf3cf solid;">
+<span style="margin: 0px;font-weight:bold;font-size: 20px;">会員登録手続</span>
+</div>
+
+<div style="background-color: #a2def0;border-bottom: 2px #fbf3cf solid; padding: 5px;"><p>ご登録ありがとうございました！<br />
+	もう少しで登録が完了します！</p>
+
+<p>	ご登録いただいた<strong>{$email}</strong>に、登録確認メールを送信しました。記載されているURLにアクセスしてください。<br />
+					<!--{if $wwwlink}-->
+                      <a href="{$wwwlink}" target="_blank"><img src="/static/img/signup-email-link.gif"></a>                   
+					<!--{/if}-->
+	また確認メールにあるURLをクリックして、登録を完了して下さい。</p>
+<p>	メールが届かない場合は、迷惑メール受信設定の可能性がございます。以下のドメインを受信出来るよう設定してください。<br /></p>
+	<p>迷惑メールフォルダに入っていませんか？<br />見つからない時は、<a href="/account/verify.php?email=${urlEncode($email)}">こちらをクリックして</a>もう一度登録確認メールを送信してください。</p>
+</div>
+<div style="background-color:#a2def0; padding: 5px;border-bottom: 2px #ffffff solid;">
+<p>			ユーポンのお知らせメール登録は<a href="/index.php">こちら</a></p>
+<p>			ユーポンの使い方は<a href="/help/tour.php">こちら</a></p>
+</div>
+
+<!--{include footer}-->

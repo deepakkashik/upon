@@ -1,0 +1,53 @@
+<div id="ftw">
+	<div id="ft">
+		<p class="contact"><a href="/feedback/suggest.php">フィードバック</a></p>
+		<ul class="cf">
+			<li class="col">
+				<h3>{$INI['system']['abbreviation']}</h3>
+				<ul class="sub-list">
+					<li><a href="/index.php">本日の{$INI['system']['abbreviation']}</a></li>
+					<li><a href="/team/index.php">過去の{$INI['system']['abbreviation']}</a></li>
+					<li><a href="/help/tour.php">{$INI['system']['abbreviation']}の使い方</a></li>
+				</ul>
+			</li>
+			<li class="col">
+				<h3>ご利用について</h3>
+				<ul class="sub-list">
+					<li><a href="/help/faqs.php">よくあるご質問</a></li>
+					<li><a href="/feedback/seller.php">店舗・事業主様へ</a></li>
+					<li><a href="/feedback/suggest.php">クーポンリクエスト</a></li>
+					<li><a href="/about/contact.php">お問い合わせ</a></li>
+					<!--{if is_manager()}-->
+					<li><a href="/manage/index.php">管理</a></li>
+					<!--{/if}-->
+				</ul>
+			</li>
+			<li class="col">
+				<h3>Follow us</h3>
+				<ul class="sub-list">
+					<li><a href="/subscribe.php?ename={$city['ename']}">メール登録</a></li>
+					<li><a href="/feed.php?ename={$city['ename']}">RSS配信</a></li>
+				</ul>
+			</li>
+			<li class="col">
+				<h3>会社情報</h3>
+				<ul class="sub-list">
+					<li><a href="/about/us.php">{$INI['system']['abbreviation']}について</a></li>
+					<li><a href="/about/job.php">会社概要</a></li>
+					<li><a href="/about/terms.php">利用規約</a></li>
+					<li><a href="/about/member.php">会員規約</a></li>
+					<li><a href="/about/privacy.php">プライバシーポリシー</a></li>
+				</ul>
+			</li>
+			<li class="col end">
+					<div class="logo-footer">
+						<a href="/"><img src="/static/css/i/logo-footer.gif" /></a>
+					</div>
+			</li>
+		</ul>
+		<div class="copyright">
+<p>Copyright &copy; 2010 <a href="http://www.universe-group.co.jp">ユニバース株式会社</a> All Rights Reserved</p>
+		</div>
+	</div>
+</div>
+<!--{include html_footer}-->

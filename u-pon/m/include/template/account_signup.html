@@ -1,0 +1,45 @@
+<!--{include header}-->
+
+<div style="background-color: #44abaf; padding: 6px 10px; ">
+<span style="margin: 0px;font-weight:bold;font-size: 20px;">会員新規登録</span>
+</div>
+<div style="margin: 3px; ">
+<div style="background-color:#a2dcf0; border-bottom: 2px #ffffff solid; padding: 0px 10px;">
+ <form id="signup-user-form" method="post" action="/account/signup.php" class="validator">
+	<div class="form-item" id="edit-name-wrapper">
+ <label for="edit-name"><br>ニックネーム： <span class="form-required" title="このフィールドの入力は必須です。">*</span></label>
+ <input type="text" size="20" maxlength="16" name="username" id="signup-username" class="f-input" value="{$_POST['username']}" datatype="limit|ajax" require="true" min="2" max="16" maxLength="16" url="${WEB_ROOT}/ajax/validator.php" vname="signupname" msg="|" />
+ <div class="description">4-16文字を入力してください。</div>
+</div>
+<div class="form-item" id="edit-mail-wrapper">
+ <label for="edit-mail"><br>Eメールアドレス： <span class="form-required" title="このフィールドの入力は必須です。">*</span></label>
+ <input type="text" maxlength="64" size="20" name="email" id="signup-email-address" class="f-input" value="{$_POST['email']}" require="true" datatype="email|ajax" url="${WEB_ROOT}/ajax/validator.php" vname="signupemail" msg="|" />
+ <div class="description">現在お使いのメールアドレスを入力してください。
+ パスワードを忘れた際に必要となります。</div>
+</div>
+
+<div class="form-item" id="edit-pass-wrapper">
+ <div class="form-item" id="edit-pass-pass1-wrapper">
+ <label for="edit-pass-pass1"><br>パスワード： <span class="form-required" title="このフィールドの入力は必須です。">*</span></label>
+ <input type="password" size="20" name="password" id="signup-password" maxlength="16" class="f-input" require="true" datatype="require" />
+</div>
+ <div class="description">英数字4文字以上を入力してください。</div>
+<div class="form-item" id="edit-pass-pass2-wrapper">
+ <label for="edit-pass-pass2"><br>パスワードの再入力： <span class="form-required" title="このフィールドの入力は必須です。">*</span></label>
+ <input type="password" size="20" maxlength="16" name="password2" id="signup-password-confirm" class="f-input" require="true" datatype="compare" compare="signup-password" />
+</div>
+
+</div>
+<div class="form-item" id="edit-profile-terms-of-use-wrapper">
+                            
+ <label for="edit-profile-terms-of-use"><input tabindex="3" type="checkbox"  name="subscribe1" id="subscribe1" class="f-check" checked="checked" /></label>
+ <label for="subscribe1"><a href="/about/member.php" target="_blank">会員規約</a>と<a href="/about/privacy.php" target="_blank">プライバシーポリシー</a>に同意します。</label>
+</div>
+<br /><p>会員登録後、ご登録頂きましたEmailアドレスに、確認メールをお送り致します。<br />ユーポン会員登録受付のメール内にあるリンクをクリックし、ユーポン会員登録を完了して下さい。</p>
+<input type="submit" value="会員登録" name="commit" id="signup-submit" class="formbutton"/>
+</form>
+<div style="margin: 3px; ">
+</div>
+</div>
+</div>
+<!--{include footer}-->

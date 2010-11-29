@@ -1,0 +1,184 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+
+<div id="leader">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_team('team')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+					<h2>クーポンの編集</h2><BR>
+					<span class="headtip">{$team['title']}</span>
+				</div>
+                <div class="sect">
+				<form id="-user-form" method="post" action="/manage/team/edit.php?id={$team['id']}" enctype="multipart/form-data" class="validator">
+					<input type="hidden" name="id" value="{$team['id']}" />
+					<div class="wholetip clear"><h3>1. 基本情報</h3></div>
+					<div class="field">
+						<label>エリアとカテゴリ</label>
+						<select name="city_id" class="f-input" style="width:160px;">${Utility::Option(Utility::OptionArray($hotcities, 'id','name'), $team['city_id'], '全国')}</select><select name="group_id" class="f-input" style="width:160px;">${Utility::Option($groups, $team['group_id'])}</select><select name="conduser" class="f-input" style="width:160px;">${Utility::Option($option_cond, $team['conduser'])}</select>
+					</div>
+					
+					<div class="field">
+						<label>タギング</label>
+						<select name="tagging_id" class="f-input" style="width:160px;">${Utility::Option($taggings)}</select>
+					</div>
+					
+					<div class="field">
+						<label>体験値の割合</label>
+						<input type="text" size="10" name="min_number" id="team-create-min-number" class="number" value="1" maxLength="6" datatype="number" require="true" />%
+					</div>
+										
+					<div class="field">
+						<label>クーポン名称</label>
+						<input type="text" size="30" name="title" id="team-create-title" class="f-input" value="{$team['title']}" datatype="require" require="true" />
+					</div>
+					<div class="field">
+						<label>通常価格</label>
+						<input type="text" size="10" name="market_price" id="team-create-market-price" class="number" value="${moneyit($team['market_price'])}" datatype="money" require="true" />
+						<label>販売価格</label>
+						<input type="text" size="10" name="team_price" id="team-create-team-price" class="number" value="${moneyit($team['team_price'])}" datatype="double" require="true" />
+						<span class="inputtip">販売価格は通常価格以下に設定します。</span>
+					</div>
+					<div class="field">
+						<label>成立枚数</label>
+						<input type="text" size="10" name="min_number" id="team-create-min-number" class="number" value="${intval($team['min_number'])}" maxLength="6" datatype="number" require="true" />
+						<label>上限枚数</label>
+						<input type="text" size="10" name="max_number" id="team-create-max-number" class="number" value="${intval($team['max_number'])}" maxLength="6" datatype="number" require="true" />
+					</div>
+					<div class="field">
+					<label>購入可能枚数上限</label>
+						<input type="text" size="10" name="per_number" id="team-create-per-number" class="number" value="${intval($team['per_number'])}" maxLength="6" datatype="number" require="true" />
+						<span class="hint">成立枚数は1以上です。上限枚数/購入可能枚数上限を設定しない場合は、0を入力します。 （商品数|人数はクーポン成立条件から決まります）</span>
+					</div>
+					<div class="field">
+						<label>販売開始日</label>
+						<input type="text" size="10" name="begin_time" id="team-create-begin-time" class="date" value="${date('Y/m/d', $team['begin_time'])}" maxLength="10" />
+						<label>販売終了日</label>
+						<input type="text" size="10" name="end_time" id="team-create-end-time" class="date" value="${date('Y/m/d', $team['end_time'])}" maxLength="10" />
+
+					</div>
+					<div class="field">
+						<label>有効期限</label>
+						<input type="text" size="10" name="expire_time" id="team-create-expire-time" class="date" value="${date('Y/m/d', $team['expire_time'])}" maxLength="10" />
+						<span class="hint">クーポン販売は午前0時に開始、終了日の0時に終了します。</span>
+					</div>
+					<div class="field">
+						<label>クーポンの紹介</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="summary" id="team-create-summary" class="f-textarea" datatype="require" require="true">${htmlspecialchars($team['summary'])}</textarea></div>
+					</div>
+					<div class="field">
+						<label>使用方法</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="notice" id="team-create-notice" class="f-textarea xheditor">{$team['notice']}</textarea></div>
+						<span class="hint">クーポンの使用期限や使用方法について記載します。</span>
+					</div>
+					<input type="hidden" name="guarantee" value="Y" />
+					<input type="hidden" name="system" value="Y" />
+					<div class="wholetip clear"><h3>2. クーポン販売情報</h3></div>
+					<div class="field">
+						<label>販売元</label>
+						<select name="partner_id" datatype="require" require="true">${Utility::Option($partners, $team['partner_id'], '------販売元を選んでください  ------')}</select>
+					</div>
+					<div class="field">
+						<label>金券のご利用</label>
+						<input type="text" size="10" name="card" id="team-create-card" class="number" value="${moneyit($team['card'])}" require="true" datatype="money" />
+						<span class="inputtip">利用可能金額</span>
+					</div>
+					<div class="field">
+						<label>クーポン名称</label>
+						<input type="text" size="30" name="product" id="team-create-product" class="f-input" value="{$team['product']}" datatype="require" require="true" />
+					</div>
+					<div class="field">
+						<label>商品イメージ</label>
+						<input type="file" size="30" name="upload_image" id="team-create-image" class="f-input" />
+						<!--{if $team['image']}--><span class="hint">${team_image($team['image'])}</span><!--{/if}-->
+					</div>
+					<div class="field">
+						<label>商品イメージ1</label>
+						<input type="file" size="30" name="upload_image1" id="team-create-image1" class="f-input" />
+						<!--{if $team['image1']}--><span class="hint">${team_image($team['image1'])}</span><!--{/if}-->
+					</div>
+					<div class="field">
+						<label>商品イメージ2</label>
+						<input type="file" size="30" name="upload_image2" id="team-create-image2" class="f-input" />
+						<!--{if $team['image2']}--><span class="hint">${team_image($team['image2'])}</span><!--{/if}-->
+					</div>
+					<div class="field">
+						<label>FLVビデオ</label>
+						<input type="text" size="30" name="flv" id="team-create-flv" class="f-input" value="{$team['flv']}" />
+						<span class="hint">形式：http://.../video.flv</span>
+					</div>
+					<div class="field">
+						<label>クーポン詳細情報</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="detail" id="team-create-detail" class="f-textarea xheditor">${htmlspecialchars($team['detail'])}</textarea></div>
+					</div>
+					<div class="field">
+						<label>レビューサイト</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="userreview" id="team-create-userreview" class="f-textarea">${htmlspecialchars($team['userreview'])}</textarea></div>
+						<span class="hint">書式："評価|レビュアー|URL"、一行につき一評価</span>
+					</div>
+					<div class="field">
+						<label>{$INI['system']['abbreviation']}オススメ情報</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="systemreview" id="team-create-systemreview" class="f-textarea xheditor">${htmlspecialchars($team['systemreview'])}</textarea></div>
+					</div>
+					<div class="wholetip clear"><h3>3. 配送情報</h3></div>
+					<div class="field">
+						<label>配送方法</label>
+						<div style="margin-top:5px;" id="express-zone-div"><input type="radio" name="delivery" value="coupon" ${$team['delivery']=='coupon'?'checked':''} />&nbsp;{$INI['system']['couponname']}&nbsp;<input type="radio" name="delivery" value='express' ${$team['delivery']=='express'?'checked':''} />&nbsp;配送&nbsp;<input type="radio" name="delivery" value='pickup' ${$team['delivery']=='pickup'?'checked':''} />&nbsp;店頭受取</div>
+					</div>
+					<div id="express-zone-coupon" style="display:${$team['delivery']=='coupon'?'block':'none'};">
+<!--						<div class="field">
+							<label>消費リベート</label>
+							<input type="text" size="10" name="credit" id="team-create-credit" class="number" value="${moneyit($team['credit'])}" datatype="money" require="true" />
+							<span class="inputtip">消費{$INI['system']['couponname']}する時、アカウント残額のリベートを獲得し、単位はCNY元</span>
+						</div>
+-->
+					</div>
+					<div id="express-zone-pickup" style="display:${$team['delivery']=='pickup'?'block':'none'};">
+						<div class="field">
+							<label>問い合わせ電話番号</label>
+							<input type="text" size="10" name="mobile" id="team-create-mobile" class="f-input" value="{$team['mobile']}" />
+						</div>
+						<div class="field">
+							<label>受取場所</label>
+							<input type="text" size="10" name="address" id="team-create-address" class="f-input" value="{$team['address']}" />
+						</div>
+					</div>
+					<div id="express-zone-express" style="display:${$team['delivery']=='express'?'block':'none'};">
+						<div class="field">
+							<label>送料</label>
+							<input type="text" size="10" name="fare" id="team-create-fare" class="number" value="${intval($team['fare'])}" maxLength="6" datatype="money" require="true" />
+							<span class="inputtip">送料は原則、300円～1,000円です。</span>
+						</div>
+						<div class="field">
+							<label>宅配便に関する説明事項</label>
+							<div style="float:left;"><textarea cols="45" rows="5" name="express" id="team-create-express" class="f-textarea">{$team['express']}</textarea></div>
+						</div>
+					</div>
+					<!--{if $INI['system']['mobileon']===1}-->
+					<div class="wholetip clear"><h3>4.モバイル版表示情報</h3></div>
+					    <!--{include manage_team_m}-->
+					<!--{/if}-->
+					<div class="act">
+					<input type="submit" value="更新" name="commit" id="leader-submit" class="formbutton" style="margin:10px 0 0 120px;"/>
+					</div>
+				</form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

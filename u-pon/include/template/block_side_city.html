@@ -1,0 +1,28 @@
+<div class="sbox side-business">
+	<div class="sbox-bubble"></div>
+	<div class="sbox-top"></div>
+	<div class="sbox-content " >
+		<div class="tip"  >
+			<span style="line-height: 20px;font-weight: bold;">エリアを選択してください</span>
+			<!--{loop $cities $czone $ones}-->	
+			<div class="headdiv" >
+				<span  class="city-head" >{$czone}</span>
+				<span class="linediv"><hr class="linestyle"></span>	
+			</div>
+			<div  class="city-footerdiv">
+				<!--{loop $ones $one}-->
+					<div class="city-footer" style="margin: 0 auto">
+						<a href="/city.php?ename={$one['ename']}&r={$currefer}" >{$one['name']}
+						</a>
+						<!--{if ($one['flag'])}-->
+						<font color="red">*</font>
+						<!--{/if}-->
+					</div>
+				<!--{/loop}-->
+			</div>
+			<!--{/loop}-->
+        </div>
+        <div>&nbsp</div>
+	</div>
+	<div class="sbox-bottom"></div>
+</div>

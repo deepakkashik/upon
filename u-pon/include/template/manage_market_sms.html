@@ -1,0 +1,45 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_market('sms')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>グループ送信</h2></div>
+                <div class="sect">
+                    <form method="post" class="validator">
+                        <div class="field">
+                            <label>携帯番号・メールアドレス</label>
+							<div style="float:left;"><textarea cols="45" rows="5" name="phones" class="f-textarea" datatype="require" require="true">${htmlspecialchars($_POST['phones'])}</textarea></div>
+							<span class="hint">复数の電話番号・アドレスの場合は、電話番号・アドレスと電話番号・アドレスの間に半角スペースやコンマや改行を使ってください。電話番号・アドレス数は300件以内にしてください。</span>
+                        </div>
+
+                        <div class="field">
+                            <label>本文</label>
+							<div style="float:left;"><textarea id="sms-content-id" cols="45" rows="5" name="content" class="f-textarea" datatype="require" require="true" onkeyup='return X.misc.smscount();'>${htmlspecialchars($_POST['content'])}</textarea></div>
+							<span class="hint">70字以内にしてください。英字も漢字も1字に認定されます。今&nbsp;<span id="span-sms-length-id" style="color:red;font-weight:bold;font-size:14px;">0</span>&nbsp;字，&nbsp;<span id="span-sms-split-id" style="color:red;font-weight:bold;font-size:14px;">0</span>&nbsp;件メッセージ</span>
+                        </div>
+
+                        <div class="act">
+                            <input type="submit" value="送信" name="commit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

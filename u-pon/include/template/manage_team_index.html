@@ -1,0 +1,84 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+<div class="dashboard" id="dashboard">
+<ul>
+	${mcurrent_team($selector)}
+</ul>
+</div>
+<div id="content" class="coupons-box clear mainwide">
+<div class="box clear">
+<div class="box-top"></div>
+<div class="box-content">
+<div class="head"><!--{if $selector=='failure'}-->
+<h2>非成立クーポン</h2>
+<!--{elseif $selector=='success'}-->
+<h2>成立クーポン</h2>
+<!--{else}-->
+<h2>本日のクーポン</h2>
+<!--{/if}--></div>
+<div class="sect">
+<table id="orders-list" cellspacing="0" cellpadding="0" border="0"
+	class="coupons-table">
+	<tr>
+		<th width="40">ID</th>
+		<th width="380">クーポン名称</th>
+		<th width="80" nowrap>カテゴリ</th>
+		<th width="100">掲載期間</th>
+		<th width="70">購入数/<br />成立数</th>
+		<th width="80" nowrap>販売価格<br />通常価格</th>
+		<th width="120">操作</th>		
+	</tr>
+	<!--{loop $teams $index $one}-->
+	<!--${$oldstate = $one['state']}-->
+	<!--${$one['state'] = team_state($one)}-->
+	<tr ${$index%2?'':'class="alt" '} id="team-list-id-{$one['id']}">
+		<td>{$one['id']}</a></td>
+		<td><a class="deal-title" href="/team.php?id={$one['id']}"
+			target="_blank">{$one['title']}</a></td>
+		<td nowrap>{$cities[$one['city_id']]['name']}<br />
+		{$groups[$one['group_id']]['name']}</td>
+		<td nowrap>${date('Y-m-d',$one['begin_time'])}<br />
+		${date('Y-m-d',$one['end_time'])}</td>
+		<td nowrap>{$one['now_number']}/{$one['min_number']}</td>
+		<td nowrap><span class="money">{$currency}</span>${number_format($one['team_price'])}<br />
+		<span class="money">{$currency}</span>${number_format($one['market_price'])}</td>
+		<td class="op" nowrap><a
+			href="/ajax/manage.php?action=teamdetail&id={$one['id']}"
+			class="ajaxlink">詳細</a>|<a
+			href="/manage/team/edit.php?id={$one['id']}">編集</a>|<a
+			href="/ajax/manage.php?action=teamremove&id={$one['id']}"
+			class="ajaxlink" ask="削除しますか？">削除</a><!--{if $one['close_time']&&in_array($one['state'],array('success','soldout'))}--><br /><a
+			href="/manage/team/down.php?id={$one['id']}" target="_blank">ダウンロード</a><!--{/if}-->
+			
+			<!--{if $selector=='success'}-->
+			<!-- <a href="/manage/view/pay.php?id={$one['id']}" >購入成功情報表示</a> -->
+			|<a href="/manage/order/pay.php?uemail=&team_id={$one['id']}" >決済情報</a>
+			<!--{elseif $selector=='failure'}-->			
+			<!-- <a href="/manage/view/unpay.php?id={$one['id']}" >購入未成功情報表示</a>  -->
+				|<a href="/manage/order/pay.php?uemail=&team_id={$one['id']}" >決済情報</a>
+			
+			<!--{else}-->
+			
+			<!--{/if}-->
+			
+		</td>
+	</tr>
+	<!--{/loop}-->
+	<tr>
+		<td colspan="7">{$pagestring}</td>
+	</tr>
+</table>
+</div>
+</div>
+<div class="box-bottom"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- bd end --></div>
+<!-- bdw end -->
+
+<!--{include manage_footer}-->

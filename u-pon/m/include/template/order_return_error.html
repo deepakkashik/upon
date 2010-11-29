@@ -1,0 +1,25 @@
+<!--{include header}-->
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="content">
+    <div id="order-pay-return" class="box">
+        <div class="box-top"></div>
+        <div class="box-content">
+			<div class="head error"><h2>申し訳ありませんが、支払いは失敗です！</h2></div>
+            <div class="sect">
+			<!--{if $order_id}-->
+				<p class="error-tip">戻る<a href="/order/check.php?id={$order_id}">私の注文</a>再び支払い。</p>
+			<!--{else}-->
+                <p class="error-tip">戻る<a href="/order/list/unpay.php">私の注文</a>再び支払い。</p>
+			<!--{/if}-->
+            </div>
+		</div>
+        <div class="box-bottom"></div>
+    </div>
+</div>
+<div id="sidebar">
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->
