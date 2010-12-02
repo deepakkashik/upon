@@ -1,0 +1,53 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('template')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                	<h2>テンプレート編集</h2>
+                	<!--{if $INI['system']['mobileon']===1}-->
+	                	<ul class="filter">
+							<li class="label">選択: </li>
+							${current_template_sub('template')}
+						</ul>
+					<!--{/if}-->
+                </div>
+                
+                <div class="sect">
+                    <form method="post">
+						<div class="wholetip clear"><h3>{$dir_template}下のテンプレートが編集可能です。</h3></div>
+						<div class="field">
+							<label>テンプレート選択</label>
+							<select name="template_id" id="manage_system_template_id" class="f-input" onchange="X.manage.loadtemplate(this.options[this.selectedIndex].value);">${Utility::Option($may, $template_id, '-')}</select>
+						</div>
+					<!--{if $content||$template_id}-->
+						<div class="field">
+							<label>テンプレート内容</label>
+							<div style="float:left;"><textarea cols="90" rows="25" name="content">${htmlspecialchars($content)}</textarea></div>
+						</div>
+					<!--{/if}-->
+                        <div class="act">
+                            <input type="submit" value="適用" name="commit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

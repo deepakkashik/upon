@@ -1,0 +1,56 @@
+<!--{include header}-->
+<div id="content" style="width: 100%; font-family: arial, sans-serif;" >
+<div id="dashboard" style="background-color:#40bdab;border-bottom: 2px #fbf3cf solid;">
+    <table style="width:100%;font-size:12px;" >
+		<tr>${current_MyPage1('index')}</tr>
+		<tr>${current_MyPage2('index')}</tr>	
+	</table>
+	</div>
+	
+	<div id="content" style="width: 100%; font-family: arial, sans-serif;" >
+	<div style="background-color: #44abaf; padding: 6px 10px;">
+		<span style="margin: 0px;font-weight:bold;font-size: 20px;">マイユーポン</span>
+	</div>
+
+	<!--{if $selector=='index'&&!$coupons}-->
+	<div style="font-size:xx-small;background-color: #A2DEF0">未使用の{$INI['system']['couponname']}がありません</div>
+	<!--{/if}-->
+	
+	<!--{loop $coupons $index $one}-->
+	<div style="margin: 3px; ">
+		<div style="background-color: #a2def0; padding: 5px; font-weight: bold;">
+			<table style="width: 100%; font-size: 12px;">
+				<tr>
+			<td style="text-align: left;"><a
+			>{$teams[$one['team_id']]['title']}</a></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div style="background-color: #a2def0; padding: 5px;">
+			<table style="width: 100%; font-size: 12px;">
+			<div style="color: #000000; margin: 0px 0px;  font-size: 12px;">有効期限:${date('Y/m/d h:i', $one['expire_time'])}</div>
+				<tr>
+					<td style="width: 55%;vertical-align: text-top">					
+					<div style="color: #000000; margin: 0px 0px;  font-size: 12px;">クーポンID:{$one['id']}</div>
+					</td>
+				</tr>	
+			
+				<tr>
+					<td style="width: 55%;vertical-align: text-top">					
+					<div style="color: #000000; margin: 0px 0px;  font-size: 12px;">認証キー:{$one['secret']}</div>
+					</td>
+					<td style="text-align: left;"><a href="/team.php?id={$one['team_id']}">詳細</a>｜<a href="/coupon/print.php?id={$one['id']}">印刷</a></td>
+				</tr>
+								
+			</table>
+		</div>
+	</div>
+	<!--{/loop}-->
+	<div style="background-color:#20b8d4; color: #ffffff; font-size: 12px; font-weight: bold; text-align: center;line-height: 22px">
+		{$pagestring}
+	</div>
+</div>
+</div>
+
+<!--{include footer}-->

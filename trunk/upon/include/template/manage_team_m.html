@@ -1,0 +1,36 @@
+<div class="field">
+	<label>クーポン名称</label>
+	<input type="text" size="30" name="title_m" id="team-mobile-title" class="f-input" value="{$team['title_m']}" require="true" datatype="require"/>
+</div>
+<div class="field">
+	<label>クーポンの紹介</label>
+	<div style="float:left;"><textarea cols="45" rows="5" name="summary_m" id="team-mobile-summary" class="f-textarea"  datatype="require" require="true">{$team['summary_m']}</textarea></div>
+</div>
+<div class="field">
+	<label>使用方法</label>
+	<div style="float:left;"><textarea cols="45" rows="5" name="notice_m" id="team-mobile-notice" class="f-textarea" >{$team['notice_m']}</textarea></div>
+	<span class="hint">クーポンの使用期限や使用方法について記載します。</span>
+</div>
+<div class="field">
+	<label>商品イメージ</label>
+	<input type="file" size="30" name="upload_image_m" id="team-mobile-image" class="f-input" />
+	<!--{if $team['image_m']}-->
+		<span class="hint">${team_image($team['image_m'])}</span>
+	<!-- {else}-->
+		<span class="hint">イメージ画像はを最低一枚、アップロードする必要があります。</span>
+	<!--{/else}-->
+	<!--{/if}-->
+</div>
+<div class="field">
+	<label>クーポン詳細情報</label>
+	<div style="float:left;"><textarea cols="45" rows="5" name="detail_m" id="team-mobile-detail" class="f-textarea">{$team['detail_m']}</textarea></div>
+</div>
+<div class="field">
+	<label>ユーザーレビュー</label>
+	<div style="float:left;"><textarea cols="45" rows="5" name="userreview_m" id="team-mobile-userreview" class="f-textarea">{$team['userreview_m']}</textarea></div>
+	<span class="hint">書式："評価|レビュアー|URL"、一行につき一評価</span>
+</div>
+<div class="field">
+	<label>{$INI['system']['abbreviation']}キャッチコピー</label>
+		<div style="float:left;"><textarea cols="45" rows="5" name="systemreview_m" id="team-mobile-systemreview" class="f-textarea">{$team['systemreview_m']}</textarea></div>
+</div>

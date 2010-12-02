@@ -1,0 +1,24 @@
+<!--{include header}-->
+
+<div style="background-color:#44abaf; padding: 10px 10px; border-bottom: 2px #fbf3cf solid;">
+<span style="margin: 0px;font-weight:bold;font-size: 20px;">パスワード再発行</span>
+</div>
+<div style="background-color:#a2dcf0; border-bottom: 2px #fbf3cf solid; padding: 0px 10px;">
+	<!--{if $_POST}-->
+	<!--{else}-->
+	<form method="post" action="/account/repass.php">
+	<div class="form-item" id="edit-name-wrapper">
+		 <label for="edit-name"><br>Emailアドレス： <span class="form-required" title="このフィールドの入力は必須です。">*</span></label>
+		 <input type="text" maxlength="64" name="email" id="reset-email" size="20" value="" class="form-text required"/>
+		 <div style="margin: 3px; "></div>
+		 <div class="description">Emailアドレスを入力して下さい。ご登録済みのEmailアドレスにパスワード再設定のリンクを送信します。</div>
+		 <div style="margin: 3px; "></div>
+	</div>
+	<input type="submit" value="パスワードを送信"  class="form-submit" />
+	</form>
+	<!--{/if}-->
+	<div style="margin: 3px; "></div>
+</div>
+
+<!--{include footer}-->
+

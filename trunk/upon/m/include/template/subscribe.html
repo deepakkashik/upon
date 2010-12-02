@@ -1,0 +1,51 @@
+<!--{include header}-->
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="maillist">
+	<div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content welcome">
+				<div class="head">
+					 <h2>{$INI['system']['sitename']}お知らせメール購読</h2>
+				</div>
+                <div class="sect">
+					<div class="lead"><h4>{$city['name']}エリアの最新クーポン情報をお届けします。</h4></div>
+					<div class="enter-address">
+						<p>{$INI['system']['sitename']}お知らせメールを登録</p>
+						<div class="enter-address-c">
+						<form id="enter-address-form" action="/subscribe.php" method="post" class="validator">
+						<div class="mail">
+							<label>メールアドレス：</label>
+							<input id="enter-address-mail" name="email" class="f-input f-mail" type="text" value="{$login_user['email']}" size="20" require="true" datatype="email" />
+							<span class="tip">お知らせメール送信以外に利用いたしません。</span>
+						</div>
+						<div class="city">
+							<label>希望エリア：</label>
+							<select name="city_id" class="f-city">${Utility::Option(Utility::OptionArray($hotcities, 'id', 'name'), $city['id'])}</select>
+							<input id="enter-address-commit" type="submit" class="formbutton" value="受取" />
+						</div>
+						</form>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="intro">
+					<p>毎日お得なクーポン生活！</p>
+				</div>
+			</div>
+		</div>
+		<div class="box-bottom"></div>
+	</div>
+</div>
+<div id="sidebar">
+	<div class="side-pic">
+	   <p><img src="/static/img/subscribe-pic1.jpg" /></p> 
+	   <p><img src="/static/img/subscribe-pic2.jpg" /></p> 
+	   <p><img src="/static/img/subscribe-pic3.jpg" /></p> 
+	</div>
+</div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

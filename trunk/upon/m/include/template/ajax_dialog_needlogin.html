@@ -1,0 +1,57 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:710px;">
+<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">Close</span>{$INI['system']['abbreviation']}素早く登録と登記</h3>
+
+<div id="content">
+	<div id="signup" style="position:relative;">
+	<div id="deal-buy-login">
+		<h3>もう{$INI['system']['abbreviation']}口座がある？</h3>
+		<form action="/account/login.php" method="post" id="deal-buy-form-login" class="validator">
+		<div id="deal-buy-login-form">
+			<p><span>Email</span><input type="text" class="f-input" id="deal-buy-email" name="email" size="30" datatype="email" require="true" /></p>
+
+			<p><span>パスワード</span><input type="password" class="f-input" name="password" size="30" datatype="require" require="true" /></p>
+			<p class="act">
+				<input type="submit" class="formbutton" name="login" value="登録"/>
+			</p>
+		</div>
+		</form>
+	</div>
+</div>
+
+<div class="box" id="deal-buy-box">
+	<div class="nobox-top"></div>
+	<div class="nobox-content">
+		<div class="head"><h2>登記とか登録しなさい<span>素早く登記，30秒しか</span></h2></div>
+		<div class="sect">
+			<form action="/account/signup.php" method="post" id="deal-buy-form-signup" class="validator">
+				<div class="field email">
+					<label for="signup-email-address">Email</label>
+
+					<input type="text" class="f-input" size="30" name="email" id="signup-email-address" require="true" datatype="email" />
+					<span class="hint">登録とパスワードを探す時使う，公開しない</span>
+				</div>
+				<div class="field username">
+					<label for="signup-username">ユーザー名</label>
+					<input type="text" class="f-input" size="30" name="username" id="signup-username" datatype="require" require="true" />
+					<span class="hint">4-16 個字符，一つ漢字は二つ字符</span>
+				</div>
+				<div class="field password">
+					<label for="signup-password">パスワード</label>
+					<input type="password" size="30" name="password" id="signup-password" class="f-input" datatype="require" require="true" />
+					<span class="hint">最小 四つ字符</span>
+				</div>
+				<div class="field password">
+					<label for="signup-password-confirm">確認パスワード</label>
+					<input type="password" size="30" name="password2" id="signup-password-confirm" class="f-input" datatype="compare" require="true" compare="signup-password" />
+				</div>
+				<div class="act" style="margin-left:110px;">
+					<input type="submit" value="注册" name="commit" id="signup-submit" class="formbutton"/>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="nobox-bottom"></div>
+</div>
+
+</div>
+</div>

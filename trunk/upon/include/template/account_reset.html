@@ -1,0 +1,39 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="reset">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>パスワード変更</h2></div>
+                <div class="sect">
+					<form method="post" action="/account/reset.php?code={$code}">
+                    <div class="field email">
+                        <label class="f-label" for="reset-password">新しいパスワード</label>
+                        <input type="password" name="password" value="" id="reset-password" class="f-input" maxlength="32" />
+                        <span class="hint">英数字4文字以上</span>
+                    </div>
+                    <div class="field email">
+                        <label class="f-label" for="reset-password2">パスワード再入力</label>
+                        <input type="password" name="password2" value="" id="reset-password2" class="f-input" maxlength="32" />
+                    </div>
+                    <div class="act">
+                        <input type="hidden" name="code" value="{$code}" />
+                        <input type="submit" class="formbutton" value="パスワード変更" />
+                    </div>
+                    </form>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+ 
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

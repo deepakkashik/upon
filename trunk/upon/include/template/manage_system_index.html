@@ -1,0 +1,106 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('index')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>基本設定</h2></div>
+                <div class="sect">
+                    <form method="post">
+						<div class="wholetip clear"><h3>1. 基本情報</h3></div>
+                        <div class="field">
+                            <label>サイト名</label>
+                            <input type="text" size="30" name="system[sitename]" class="f-input" value="{$INI['system']['sitename']}"/>
+                        </div>
+                        <div class="field">
+                            <label>サイトタイトル</label>
+                            <input type="text" size="30" name="system[sitetitle]" class="f-input" value="{$INI['system']['sitetitle']}"/>
+                        </div>
+                        <div class="field">
+                            <label>サイト略称</label>
+                            <input type="text" size="30" name="system[abbreviation]" class="f-input" value="{$INI['system']['abbreviation']}"/>
+                        </div>
+                        <div class="field">
+                            <label>クーポンブランド</label>
+                            <input type="text" size="30" name="system[couponname]" class="f-input" value="{$INI['system']['couponname']}"/>
+                        </div>
+                        <div class="field">
+                            <label>通貨記号</label>
+                            <input type="text" size="30" name="system[currency]" class="number" value="{$INI['system']['currency']}"/>
+						</div>
+                        <!-- <div class="field">
+                            <label>お友達紹介キャンペーン</label>
+                            <input type="text" size="30" name="system[invitecredit]" class="number" value="${abs(intval($INI['system']['invitecredit']))}"/>
+							<span class="inputtip">単位：円</span>
+						</div> -->
+                        <div class="field">
+                            <label>メールアドレス検証</label>
+                            <input type="text" size="30" name="system[emailverify]" class="number" value="${abs(intval($INI['system']['emailverify']))}"/>
+							<span class="inputtip">1 検証する、0 検証しない</span>
+						</div>
+                        <!-- <div class="field">
+                            <label>サイドバークーポン</label>
+                            <input type="text" size="30" name="system[sideteam]" class="number" value="${abs(intval($INI['system']['sideteam']))}"/>
+							<span class="inputtip">OFF：0、ON：1</span>
+							<span class="hint">ほかのエリアのクーポンをサイドバーに表示しますか？</span>
+						</div> -->
+						<div class="wholetip clear"><h3>2. 詳細設定</h3></div>
+                        <div class="field">
+                            <label>カウントルール</label>
+                            <input type="text" size="30" name="system[conduser]" class="number" value="${abs(intval($INI['system']['conduser']))}"/><span class="inputtip">1 決済完了人数、 0 購入申込人数</span>
+						</div>
+                        <div class="field">
+                            <label>購入者一覧</label>
+                            <input type="text" size="30" name="system[partnerdown]" class="number" value="${abs(intval($INI['system']['partnerdown']))}"/><span class="inputtip">1 クーポンIDと認証キーをダウンロードする、0 クーポンIDのみダウンロードする</span>
+						</div>
+                        <div class="field">
+                            <label>クチコミ掲示板</label>
+                            <input type="text" size="30" name="system[forum]" class="number" value="${abs(intval($INI['system']['forum']))}"/><span class="inputtip">1 ON、0 OFF</span>
+						</div>
+						<div class="field">
+                            <label>携帯コンテンツ</label>
+                            <input type="text" size="30" name="system[mobileon]" class="number" value="${abs(intval($INI['system']['mobileon']))}"/><span class="inputtip">1 ON、0 OFF</span>
+						</div>
+                        <div class="field">
+                            <label>データ圧縮</label>
+                            <input type="text" size="30" name="system[gzip]" class="number" value="${abs(intval($INI['system']['gzip']))}"/><span class="inputtip">1 圧縮する、0 圧縮しない</span>
+							<span class="hint">データ圧縮はネットワークの情報量を削減し、ユーザのダウンロード時間を短縮できますが、サーバの負荷が増加します。</span>
+						</div>
+						<!-- <div class="wholetip clear"><h3>3. サポート連絡先</h3></div>
+                        <div class="field">
+                            <label>QQ</label>
+                            <input type="text" size="30" name="system[kefuqq]" class="f-input" value="{$INI['system']['kefuqq']}"/>
+						</div>
+                        <div class="field">
+                            <label>MSN</label>
+                            <input type="text" size="30" name="system[kefumsn]" class="f-input" value="{$INI['system']['kefumsn']}"/>
+						</div>
+						<div class="wholetip clear"><h3>4. その他の情報</h3></div>
+                        <div class="field">
+                            <label>ICP番号</label>
+                            <input type="text" size="30" name="system[icp]" class="f-input" value="{$INI['system']['icp']}"/>
+						</div> -->
+						<div class="act">
+                            <input type="submit" value="適用" name="commit" class="formbutton" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->
