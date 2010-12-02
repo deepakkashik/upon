@@ -6,8 +6,8 @@ $INI = array (
     'user' => 'root',
     'pass' => '',
     'name' => 'upon_db',
-    'email' => 'tanbunko@gmail.com',
-    'password' => 'cc020219d9a3d79810312f3797c15b2d',
+    'email' => 'admin',
+    'password' => 'df12aff795dd444d1fa1dc5a3548e48e',
   ),
   'GMO' => 
   array (
