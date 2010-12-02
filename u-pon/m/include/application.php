@@ -71,12 +71,12 @@ function __autoload($class_name) {
 function import($funcpre) {
 	$file_path = DIR_FUNCTION. '/' . $funcpre . '.php'; 
 	if (file_exists($file_path) ) {
-		require_once( $file_path );
+		return require_once( $file_path );
 	}
 	
 	$file_path = DIR_FUNCTION_PC. '/' . $funcpre . '.php'; 
 	if (file_exists($file_path) ) {
-		require_once( $file_path );
+		return require_once( $file_path );
 	}
 	
 }
