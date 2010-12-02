@@ -1,24 +1,29 @@
 <?php
 require_once(dirname(dirname(__FILE__)) . '/app.php');
 
+//前画面からクーポンIDより、クーポン情報を取得する
 $id = abs(intval($_GET['id']));
-
 $team = Table::Fetch('team', $id);
-if ( !$team || $team['begin_time']>time() ) {
+
+//クーポンありません　また　クーポン未開始
+if ( !$team || $team['begin_time'] > time() ) {
 	Session::Set('error', TEAM_BUY_ERRNOTEXIST);
 	Utility::Redirect( WEB_ROOT . '/index.php' );
 }
 
+//オーダー情報を取得する
+//	*検索条件：ユーザID　及び　クーポンID　
 $ex_con = array(
-		'user_id' => $login_user_id,
-		'team_id' => $team['id'],
-		);
+	'user_id' => $login_user_id,
+	'team_id' => $team['id'],
+);
 $order = DB::LimitQuery('order', array(
 	'condition' => $ex_con,
 	'one' => true,
 ));
 
-if ($order && $order['state']!='unpay') {
+//既にこのクーポンを購入されている場合：
+if ( $order && $order['state'] != 'unpay' ) {
 	Session::Set('error', TEAM_BUY_ERRBUYONE);
 	Utility::Redirect( WEB_ROOT . "/team.php?id={$id}");
 }
@@ -35,7 +40,7 @@ if ( $_POST ) {
 		Utility::Redirect( WEB_ROOT . "/team/buy.php?id={$team['id']}");
 	}
 
-	if ($order && $order['state']=='unpay') {
+	if ($order && $order['state'] == 'unpay') {
 		$table->id = $order['id'];
 	}
 
