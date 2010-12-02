@@ -233,7 +233,7 @@ define(ACCUONT_RESET_PASSORD_ERROR,'パスワードが一致していません')
 define(ACCUONT_SETTINGS_SETTINGS_SUCCESS,'アカウント情報を変更しました');
 define(ACCUONT_SETTINGS_SETTINGS_FAILED,'アカウント情報を変更できませんでした');
 define(ACCUONT_SETTINGS_USERNAME_LENGTH_INVALID,'IDの長さを4-16にしてください');
-define(ACCUONT_SETTINGS_REALNAME_LENGTH_INVALID,'名前の長さを4-16にしてください');
+define(ACCUONT_SETTINGS_REALNAME_LENGTH_INVALID,'名前の長さを2-32にしてください');
 define(ACCUONT_SETTINGS_REALNAME_INVALID,'名前の文字が無効です');
 define(ACCUONT_SETTINGS_PASSWORDS_DIFFERENT,'パスワード再入力が不同');
 define(ACCUONT_SETTINGS_PASSWORD_LENGTH_INVALID,'バスワードの長さを4-16にしてください');
@@ -312,6 +312,9 @@ define(ORDER_CHARGE_CHG_EMAIL_SYSTEM_SITENAME,"%s(%s}チャージ%s円)");
 define(ORDER_CHECK_ERROR, 'オーダーがありません');
 
 //order/index.php
+
+//order/gmopay.php
+define(ORDER_GMOPAY_INVALID_CREDITCARD_NO, 'クレジットカードは最大文字数を超えています。');
 
 //order/pay.php
 

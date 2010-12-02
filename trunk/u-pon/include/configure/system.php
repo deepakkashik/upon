@@ -6,8 +6,8 @@ $INI = array (
     'user' => 'root',
     'pass' => '',
     'name' => 'upon_db',
-    'email' => 'admin@admin.com',
-    'password' => 'df12aff795dd444d1fa1dc5a3548e48e',
+    'email' => 'tanbunko@gmail.com',
+    'password' => 'cc020219d9a3d79810312f3797c15b2d',
   ),
   'GMO' => 
   array (
@@ -15,6 +15,6 @@ $INI = array (
   	'PGCARD_SHOP_PASS' => '7qbzznkh',
   	'PGCARD_SITE_ID' => 'tsite00004291',
   	'PGCARD_SITE_PASS' => 'kkbt322a9d',
-  ),
+  ),  
 );
 ?>
