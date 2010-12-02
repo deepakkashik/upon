@@ -45,6 +45,7 @@ if ( $_POST ) {
 	$table->express = ($team['delivery']=='express') ? 'Y' : 'N';
 	$table->fare = $table->express=='Y' ? $team['fare'] : 0;
 	$table->price = $team['team_price'];
+	$table->service = 'gmo';
 	$table->credit = 0;
 
 	if ( $table->id ) {
@@ -64,7 +65,7 @@ if ( $_POST ) {
 
 	if ($flag = $table->update($insert)) {
 		$order_id = abs(intval($table->id));
-		Utility::Redirect(WEB_ROOT."/order/check.php?id={$order_id}");
+		Utility::Redirect(WEB_ROOT."/order/check.php?id={$order_id}");			
 	}
 }
 

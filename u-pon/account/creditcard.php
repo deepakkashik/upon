@@ -21,6 +21,15 @@ if ( $_POST )
 	$card_post['CardNo'] = trim($_POST['CardNo']);
 	$card_post['CardPass'] = trim($_POST['CardPass']);
 	$card_post['Expire'] = substr($_POST['ExpireYear'],2,2) . $_POST['ExpireMonth'];
+
+	//creditcard check
+	if($_POST['CardNo'])
+	{
+		if(!Utility::ValidStrlen($card_post['CardNo'],10,16))
+		{
+			$errMsg = $errMsg. ORDER_GMOPAY_INVALID_CREDITCARD_NO."</br>";
+		}
+	}
 	
 	
 	$card = $gp->getCard($member_id);

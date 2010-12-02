@@ -19,7 +19,7 @@ if ( $_POST ) {
 	//ユーザ名
 	if($_POST['username'])
 	{
-		if(Utility::ValidStrlen($_POST['username'],4,16))
+		if(!Utility::ValidStrlen($_POST['username'],4,16))
 		{
 			$errMsg = $errMsg.ACCUONT_SETTINGS_USERNAME_LENGTH_INVALID."</br>";
 		}
@@ -33,7 +33,7 @@ if ( $_POST ) {
 	{
 		if($_POST['password'])
 		{
-			if(Utility::ValidStrlen($_POST['password'],4,16))
+			if(!Utility::ValidStrlen($_POST['password'],4,16))
 			{
 				$errMsg = $errMsg.ACCUONT_SETTINGS_PASSWORD_LENGTH_INVALID."</br>";
 			}	
@@ -42,15 +42,15 @@ if ( $_POST ) {
 	//名前
 	if($_POST['realname'])
 	{
-		if(Utility::ValidStrlen($_POST['realname'],2,32))
+		if(!Utility::ValidStrlen($_POST['realname'],2,32))
 		{
 			$errMsg = $errMsg.ACCUONT_SETTINGS_REALNAME_LENGTH_INVALID."</br>";
 		}
-		if(Utility::IsJpCharactor($_POST['realname']))
+/*		if(Utility::IsJpCharactor($_POST['realname']))
 		{
 			$errMsg = $errMsg.ACCUONT_SETTINGS_REALNAME_INVALID."</br>";
 		}
-	}
+*/	}
 	//郵便番号
 	if($_POST['zipcode'])
 	{

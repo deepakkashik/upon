@@ -68,13 +68,13 @@
 	            <div class="sect">
 	            <table class="order-table">
 	                <tr>
-	                    <td class="deal-buy-desc">お名前</td><td class="deal-buy-desc">〇〇 様</td>
+	                    <td class="deal-buy-desc">お名前</td><td class="deal-buy-desc">{$order['realname']} 様</td>
 					</tr>
 					<tr>
-	                    <td class="deal-buy-desc">メールアドレス</td><td class="deal-buy-desc">xxxx@gmail.com</td>
+	                    <td class="deal-buy-desc">メールアドレス</td><td class="deal-buy-desc">{$login_user['email']}</td>
 	                </tr>
 	                <tr>
-	                	<td class="deal-buy-desc">住所</td><td class="deal-buy-desc">〒212-0813<br/>東京都東京足立区４丁目１２番地西保木間
+	                	<td class="deal-buy-desc">住所</td><td class="deal-buy-desc">〒{$order['zipcode']}<br/>{$order['address']}
 	                	</td>
 	                </tr>
 	            </table>
@@ -99,13 +99,13 @@
 	                    <td class="deal-buy-desc">支払い方法</td><td class="deal-buy-desc">クレジットカード</td>
 					</tr>
 	                <tr>
-	                    <td class="deal-buy-desc">カード名義</td><td class="deal-buy-desc">〇〇〇〇</td>
+	                    <td class="deal-buy-desc">カード名義</td><td class="deal-buy-desc">{$credit_card['HolderName']}</td>
 					</tr>
 	                <tr>
-	                    <td class="deal-buy-desc">カード番号</td><td class="deal-buy-desc">************2000</td>
+	                    <td class="deal-buy-desc">カード番号</td><td class="deal-buy-desc">{$credit_card['CardNo']}</td>
 					</tr>
 	                <tr>
-	                    <td class="deal-buy-desc">有効期限</td><td class="deal-buy-desc">8/2012</td>	                    
+	                    <td class="deal-buy-desc">有効期限</td><td class="deal-buy-desc">{$credit_card['Expire']}</td>	                    
 					</tr>
 	                <tr>
 	                    <td class="deal-buy-desc">セキュリティーコード</td><td class="deal-buy-desc">----</td>	                    
@@ -113,29 +113,12 @@
 	            </table>
 				<div class="paytype">
 				
-                <form action="https://credit.j-payment.co.jp/gateway/payform.aspx" method="post" class="validator"><!-- /order/pay.php  https://credit.j-payment.co.jp/gateway/payform.aspx -->
+                <form action="/order/pay.php" method="post" class="validator"><!-- /order/pay.php  https://credit.j-payment.co.jp/gateway/payform.aspx -->
 					<div class="order-check-form ">
 					
-					<INPUT TYPE="HIDDEN" NAME="aid" VALUE="103534">
-					<INPUT TYPE="HIDDEN" NAME="jb" VALUE="AUTH">
-					<INPUT TYPE="HIDDEN" NAME="am" VALUE="${moneyit($order['price']*$order['quantity'])}">
-					<INPUT TYPE="HIDDEN" NAME="tx" VALUE="0">
-					<INPUT TYPE="HIDDEN" NAME="sf" VALUE="0">
-					<input type="hidden" name="cod" value="{$order['id']}" /> 
-					<!--<input type="hidden" name="service" value="credit" />-->
-					<!--<input type="hidden" name="paytype" value="credit" />-->
+					<INPUT TYPE="HIDDEN" NAME="order_id" VALUE="{$order['id']}">
+					<INPUT TYPE="HIDDEN" NAME="amount" VALUE="${moneyit($order['price']*$order['quantity'])}">
 					
-					<!-- 	
-						<div class="clear"></div>
-						<p class="check-act">
-						<input type="hidden" name="order_id" value="{$order['id']}" />
-						<input type="hidden" name="team_id" value="{$order['team_id']}" />
-						<input type="hidden" name="cardcode" value="" />
-						<input type="hidden" name="quantity" value="{$order['quantity']}" />
-						<input type="hidden" name="address" value="{$order['address']}" />
-						<input type="hidden" name="express" value="{$order['express']}" />
-						<input type="hidden" name="remark" value="{$order['remark']}" />
-					-->
 						<p>※上記の内容でよろしければ、「決済実行」ボタンをクリックして、決済を行ってください。</p>
 						<input type="submit" value="決済実行" class="formbutton" /> <a href="/team/buy.php?id={$order['team_id']}" style="margin-left:1em;">ご注文画面に戻る</a>
 

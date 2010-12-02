@@ -5,6 +5,9 @@ class GmoPayment
 	const JOB_CHECK 	= 'CHECK';		//CHECK:有効性チェック
 	const JOB_AUTH 		= 'AUTH';		//AUTH:仮売上
 	const JOB_CAPTURE 	= 'CAPTURE';	//CAPTURE:即時売上
+	const JOB_SALES		= 'SALES';		//実売上
+	
+	const ORDER_PRE		= '168';		//order prefix
 	
 	const SEQMODE_LOGIC  = '0';			//カード連番モード論理
 	const SEQMODE_PHYSICS = '1';		//カード連番モード物理
@@ -352,6 +355,190 @@ class GmoPayment
 	
 		//実行後、その結果を確認します。
 		return $this->_isSuccess($exe, $output);
+	}
+	
+	public function getGmoOrderId($order_id)
+	{
+		return GmoPayment::ORDER_PRE . $order_id;
+	}
+	
+	
+	// クーポンが成立したあと、この関数で決済有効状態に変更する。
+	public function confirmTran($order_id)
+	{
+		$output = $this->seachTrande($order_id);
+		
+		if( $output=== false )
+		{
+			return false;
+		}
+		
+		require_once( 'com/gmo_pg/client/input/AlterTranInput.php');
+		require_once( 'com/gmo_pg/client/tran/AlterTran.php');
+		
+		//入力パラメータクラスをインスタンス化します
+		$input = new AlterTranInput();/* @var $input AlterTranInput */
+		
+		//各種パラメータを設定します。
+		$config = Config::Instance('php');
+		
+		$input->setShopId( $config['GMO']['PGCARD_SHOP_ID'] );
+		$input->setShopPass( $config['GMO']['PGCARD_SHOP_PASS'] );
+		
+		$input->setAccessId( $output->getAccessID());
+		$input->setAccessPass( $output->getAccessPass() );
+		
+		$input->setJobCd( GmoPayment::JOB_SALES );
+		
+		$input->setAmount( $output->getAmount());
+		$input->setTax($output->getTax());
+		
+		//支払方法に応じて、支払回数のセット要否が異なります。
+		$input->setMethod( '1' );
+		//$input->setPayTimes('1');
+
+		//API通信クラスをインスタンス化します
+		$exe = new AlterTran();/* @var $exec AlterTran */
+		
+		//パラメータオブジェクトを引数に、実行メソッドを呼びます。
+		//正常に終了した場合、結果オブジェクトが返るはずです。
+		$output = $exe->exec( $input );/* @var $output AlterTranOutput */
+	
+		//実行後、その結果を確認します。
+		return $output;
+	}
+	
+	// クーポンを購入するときに、この関数でしはらい
+	public function execTranByMemberId($order_id, $amount, $member_id)
+	{
+		$output = $this->getTrande($order_id, $amount);
+		if($output!==false)
+		{
+			return $output;
+		}
+		
+		require_once( 'com/gmo_pg/client/input/ExecTranInput.php');
+		require_once( 'com/gmo_pg/client/tran/ExecTran.php');
+		
+		//入力パラメータクラスをインスタンス化します
+		$input = new ExecTranInput();/* @var $input ExecTranInput */
+		
+		//各種パラメータを設定します。
+	
+		//カード番号入力型・会員ID決済型に共通する値です。
+		$input->setAccessId( $output->getAccessId() );
+		$input->setAccessPass( $output->getAccessPass() );
+		$input->setOrderId( $this->getGmoOrderId($order_id) );
+		
+		//支払方法に応じて、支払回数のセット要否が異なります。
+		$input->setMethod( '1' );	//一括で
+		
+		//このサンプルでは、加盟店自由項目１～３を全て利用していますが、これらの項目は任意項目です。
+		//利用しない場合、設定する必要はありません。
+		//また、加盟店自由項目に２バイトコードを設定する場合、SJISに変換して設定してください。
+		//$input->setClientField1( mb_convert_encoding( $_POST['ClientField1'] , 'SJIS' , PGCARD_SAMPLE_ENCODING ) );
+		//$input->setClientField2( mb_convert_encoding( $_POST['ClientField2'] , 'SJIS' , PGCARD_SAMPLE_ENCODING ) );
+		//$input->setClientField3( mb_convert_encoding( $_POST['ClientField3'] , 'SJIS' , PGCARD_SAMPLE_ENCODING ) );
+		
+				
+		//ここでは、「画面で会員IDが入力されたか」を判断基準にして、
+		//決済のタイプを判別しています。
+		$memberId = $member_id;
+		
+		//サンプルでは、サイトID・サイトパスワードはコンスタント定義しています。
+		$input->setSiteId( PGCARD_SITE_ID );
+		$input->setSitePass( PGCARD_SITE_PASS );
+			
+		//会員IDは必須です。
+		$input->setMemberId( $memberId );
+		
+		//登録カード連番は'0'です。		
+		$input->setCardSeq( '0' );
+		
+			
+		//API通信クラスをインスタンス化します
+		$exe = new ExecTran();/* @var $exec ExecTran */
+		
+		//パラメータオブジェクトを引数に、実行メソッドを呼びます。
+		//正常に終了した場合、結果オブジェクトが返るはずです。
+		$output = $exe->exec( $input );/* @var $output ExecTranOutput */
+
+		return $output;
+	}
+	
+	public function getTrande($order_id, $amount, $jobcd = GmoPayment::JOB_AUTH )
+	{
+		$output = $this->seachTrande($order_id);
+		if($output!==false)
+		{
+			return $output;
+		}
+		
+		require_once( 'com/gmo_pg/client/input/EntryTranInput.php');
+		require_once( 'com/gmo_pg/client/tran/EntryTran.php');
+		
+		//入力パラメータクラスをインスタンス化します
+		$input = new EntryTranInput();/* @var $input EntryTranInput */
+		
+		//このサンプルでは、サイトID・パスワードはコンフィグファイルで
+		//定数defineしています。
+		$config = Config::Instance('php');
+		$input->setShopId( $config['GMO']['PGCARD_SHOP_ID'] );
+		$input->setShopPass( $config['GMO']['PGCARD_SHOP_PASS'] );
+		
+		//各種パラメータを設定しています。
+		//実際には、処理区分や利用金額、オーダーIDといったパラメータをカード所有者が直接入力することは無く、
+		//購買内容を元に加盟店様システムで生成した値が設定されるものと思います。
+		$input->setJobCd( $jobcd );
+		$input->setOrderId( $this->getGmoOrderId($order_id) );
+		$input->setAmount($amount);
+		
+		//API通信クラスをインスタンス化します
+		$exe = new EntryTran();/* @var $exec EntryTran */
+		
+		//パラメータオブジェクトを引数に、実行メソッドを呼び、結果を受け取ります。
+		$output = $exe->exec( $input );/* @var $output EntryTranOutput */
+	
+		
+		//実行後、その結果を確認します。		
+		if( $this->_isSuccess($exe, $output) === false)
+		{
+			return false;
+		}
+		
+		return $output;
+	}
+	
+	public function seachTrande($order_id)
+	{
+		require_once( 'com/gmo_pg/client/input/SearchTradeInput.php');
+		require_once( 'com/gmo_pg/client/tran/SearchTrade.php');
+		
+		//入力パラメータクラスをインスタンス化します
+		$input = new SearchTradeInput();/* @var $input SearchTradeInput */
+		
+		//各種パラメータを設定します。
+	
+		//カード番号入力型・会員ID決済型に共通する値です。
+		$config = Config::Instance('php');
+		$input->setShopId( $config['GMO']['PGCARD_SHOP_ID'] );
+		$input->setShopPass( $config['GMO']['PGCARD_SHOP_PASS'] );		
+		$input->setOrderId( $this->getGmoOrderId($order_id) );
+		
+		//API通信クラスをインスタンス化します
+		$exe = new SearchTrade();/* @var $exec SearchTrade */
+		
+		//パラメータオブジェクトを引数に、実行メソッドを呼びます。
+		//正常に終了した場合、結果オブジェクトが返るはずです。
+		$output = $exe->exec( $input );/* @var $output SearchTradeOutput */
+		
+		//実行後、その結果を確認します。		
+		if( $this->_isSuccess($exe, $output) === false)
+		{
+			return false;
+		}
+		
+		return $output;
 	}
 	
 	public function addNewCard($member_id, $card)
