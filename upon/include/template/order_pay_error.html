@@ -1,0 +1,38 @@
+<!--{include header}-->
+<!--{if is_get()}--><div class="sysmsgw" id="sysmsg-error"><div class="sysmsg"><p>この注文は支払いを完了していない、まだ再支払いをしてください。</p><span class="close">閉じる</span></div></div><!--{/if}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="order-pay">
+    <div id="content">
+        <div id="deal-buy" class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>合計支払金額：<strong class="total-money">${number_format($v_amount)}</strong> 円</h2>
+                </div>
+                <div class="sect">
+                    <div style="text-align:left;">
+<!-- chinabank -->
+<form id="order-pay-form" method="post" action="https://pay3.chinabank.com.cn/PayGate" target="_blank" sid="{$order['id']}">
+	<input type="hidden" name="v_mid" value="{$v_mid}" />
+	<input type="hidden" name="v_oid" value="{$v_oid}" />
+	<input type="hidden" name="v_amount" value="{$v_amount}" />
+	<input type="hidden" name="v_moneytype" value="{$v_moneytype}" />
+	<input type="hidden" name="v_url" value="{$v_url}" />
+	<input type="hidden" name="v_md5info" value="{$v_md5info}" />
+	<input type="image"  class="button-image" src="/static/css/i/chinabank.png" value="インターネットバンキングのオンライン決済" name="commit" style="vertical-align:middle;"/>
+	<input type="submit" class="formbutton gotopay" value="インターネットバンキングのオンライン決済" style="vertical-align:middle;"/>
+</form>
+<!-- chinabank end -->
+                    </div>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

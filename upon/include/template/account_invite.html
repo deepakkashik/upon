@@ -1,0 +1,43 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="referrals">
+    <div id="content" class="refers">
+        <div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>お友達紹介キャンペーン</h2></div>
+                <div class="sect">
+					<div class="share-links">
+						<ul class="share-list cf">
+							<li class="site">
+								<p class="im">クーポン情報をシェアして、豪華賞品をゲット！<input id="share-copy-text" type="text" value="{$INI['system']['wwwprefix']}/r.php?r={$login_user_id}" size="35" class="f-input" onfocus="this.select()" /></p>
+							</li>
+						</ul>
+						<div class="refer-box">
+							<div class="refer-box-top"></div>
+							<div class="refer-box-content">
+								<table class="deal-info">
+									<td class="pic"><a href="/team.php?id={$team['id']}" target="_blank"><img src="${team_image($team['image'])}" width="150" height="90" /></a></td>
+									<td class="deal-title">{$team['title']}</td>
+								</table>
+								<br>
+								<!--{include block_invite_share}-->
+								<div class="clear"></div>
+							</div>
+							<div class="refer-box-bottom"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+ 
+<!--{include footer}-->

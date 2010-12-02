@@ -1,0 +1,39 @@
+<!--{include header}-->
+
+<div id="dashboard" style="background-color:#40bdab;border-bottom: 2px #fbf3cf solid;">
+    <table style="width:100%;font-size:12px;" >
+		<tr>${current_forum('index')}</tr>
+	</table>
+</div>
+
+<div style="background-color:#A2DEF0;">
+    <div style="background-color: #44abaf; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+        <span style="margin: 0px; font-weight: bold; font-size: 20px;">全てのトピックス</span>
+    </div>
+    <div style="padding: 6px 10px;">
+    	<a style="color:#339999;font-size:12px" href="/forum/new.php">＋新しいトピックス</a>
+    </div>
+	<div style="font-size:12px">
+		<table style="width:100%" id="orders-list" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<th style="background-color: #44abaf;font-size:12px" width="90%">トピックス</th>
+				<th style="background-color: #44abaf;font-size:12px" width="10%" nowrap>返信/閲覧</th>
+			</tr>
+			<!--{loop $topics $index $one}-->
+			<tr>
+				<td ${$index%2?'style="text-align:left;border:1px solid #fbf3cf;padding:10px;font-size:12px"':'style="text-align:left;background:none repeat scroll 0 0 #F1F1F1;border:1px solid #fbf3cf;padding:10px;font-size:12px"'}>
+					<a href="/forum/topic.php?id={$one['id']}">${htmlspecialchars($one['title'])}</a>
+				</td>
+				<td align="center" ${$index%2?'style="border:1px solid #fbf3cf;padding:10px;font-size:12px"':'style="background:none repeat scroll 0 0 #F1F1F1;border:1px solid #fbf3cf;padding:10px;font-size:12px"'} nowrap>
+					{$one['reply_number']}/{$one['view_number']}
+				</td>
+			</tr>
+			<!--{/loop}-->
+			<tr>
+				<td colspan="2" style="background-color:#20b8d4; color: #fbf3cf; font-size: 12px; font-weight: bold; text-align: center;line-height: 22px">{$pagestring}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<!--{include footer}-->

@@ -1,0 +1,59 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('cache')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>キャッシュメモリー設置（Memcache）</h2></div>
+                <div class="sect">
+                    <form method="post">
+						<div class="wholetip clear">
+							<h3>書式 127.0.0.1:11211:100。Memcacheを利用しない場合は、ブランクにしてください。</h3>
+						</div>
+						<div style="margin:0 20px;">
+							<p>MemcacheサーバーIP：127.0.0.1</p>
+							<p>Memcacheサービスポート：11211 </p>
+							<p>100 は「メトリック」、 0より大きい任意の整数</p>
+						</div>
+						<div class="wholetip clear"><h3>1. Cacheテーブル</h3></div>
+                        <div class="field">
+                            <label>ホスト 1</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][0]}"/>
+                        </div>
+                        <div class="field">
+                            <label>ホスト 2</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][1]}"/>
+                        </div>
+                        <div class="field">
+                            <label>ホスト 3</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][2]}"/>
+                        </div>
+                        <div class="field">
+                            <label>ホスト 4</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][3]}"/>
+                        </div>
+
+                        <div class="act">
+                            <input type="submit" value="適用" name="commit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

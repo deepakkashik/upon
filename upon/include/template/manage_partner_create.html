@@ -1,0 +1,89 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_partner('create')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>新規店舗登録</h2></div>
+                <div class="sect">
+                    <form id="login-user-form" method="post" action="/manage/partner/create.php" class="validator">
+						<div class="wholetip clear"><h3>1. ログイン情報</h3></div>
+                        <div class="field">
+                            <label>ユーザーID</label>
+                            <input type="text" size="30" name="username" id="partner-create-username" class="f-input" value="{$partner['username']}" require="true" datatype="require" />
+                        </div>
+                        <div class="field password">
+                            <label>パスワード</label>
+                            <input type="text" size="30" name="password" id="settings-password" class="f-input" require="true" datatype="require" />
+                        </div>
+
+						<div class="wholetip clear"><h3>2. 基本情報</h3></div>
+                        <div class="field">
+                            <label>店舗名称</label>
+                            <input type="text" size="30" name="title" id="partner-create-title" class="f-input" value="{$partner['title']}" require="true" datatype="require" />
+                        </div>
+                        <div class="field">
+                            <label>ホームページ</label>
+                            <input type="text" size="30" name="homepage" id="partner-create-homepage" class="f-input" value="{$partner['homepage']}"/>
+                        </div>
+                        <div class="field">
+                            <label>連絡先・担当者</label>
+                            <input type="text" size="30" name="contact" id="partner-create-contact" class="f-input" value="{$partner['contact']}" />
+						</div>
+                        <div class="field">
+                            <label>電話番号</label>
+                            <input type="text" size="30" name="phone" id="partner-create-phone" class="f-input" value="{$partner['phone']}" maxLength="18" datatype="require" require="ture" />
+						</div>
+                        <div class="field">
+                            <label>店舗住所</label>
+                            <input type="text" size="30" name="address" id="partner-create-address" class="f-input" value="{$partner['address']}" datatype="require" require="true" />
+						</div>
+                        <div class="field">
+                            <label>携帯電話</label>
+                            <input type="text" size="30" name="mobile" id="partner-create-mobile" class="f-input" value="{$partner['mobile']}" maxLength="11" />
+						</div>
+                        <div class="field">
+                            <label>地図情報</label>
+                            <div style="float:left;"><textarea cols="45" rows="5" name="location" id="partner-create-location" class="f-textarea xheditor"></textarea></div>
+						</div>
+                        <div class="field">
+                            <label>その他</label>
+                            <div style="float:left;"><textarea cols="45" rows="5" name="other" id="partner-create-other" class="f-textarea xheditor"></textarea></div>
+						</div>
+						<div class="wholetip clear"><h3>3. 振込先口座情報</h3></div>
+                        <div class="field">
+                            <label>銀行名・支店名</label>
+                            <input type="text" size="30" name="bank_name" id="partner-create-bankname" class="f-input" value="{$partner['bank_name']}"/>
+                        </div>
+                        <div class="field">
+                            <label>受取人</label>
+                            <input type="text" size="30" name="bank_user" id="partner-create-bankuser" class="f-input" value="{$partner['bank_user']}"/>
+                        </div>
+                        <div class="field">
+                            <label>銀行・支店コード・口座番号</label>
+                            <input type="text" size="30" name="bank_no" id="partner-create-bankno" class="f-input" value="{$partner['bank_no']}"/>
+                        </div>
+                        <div class="act">
+                            <input type="submit" value="登録" name="commit" id="partner-submit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

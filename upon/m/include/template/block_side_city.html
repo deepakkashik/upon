@@ -1,0 +1,26 @@
+<div class="sbox side-business" style="margin-top:20px;">
+	<div class="sbox-bubble"></div>
+	<div class="sbox-top"></div>
+	<div class="sbox-content sbox-contentcity" >
+		<div class="tip" >
+			<h2>エリアを選択してください</h2>
+				<!--{loop $cities $czone $ones}-->	
+					<div  class="city-head"><b>{$czone}</b></div>
+					<div class="linediv"><hr class="linestyle"></div>
+					
+					<!--{loop $ones $one}-->
+					<div class="city-footer">
+						
+						<p class="city_list" style="line-height:14px;">
+						<a href="/city.php?ename={$one['ename']}&r={$currefer}">{$one['name']}</a>
+						</p>						
+					</div>
+					<!--{/loop}-->
+					
+				<!--{/loop}-->
+			
+            </div>
+		
+	</div>
+	<div class="sbox-bottom sbox-bottomcity"></div>
+</div>

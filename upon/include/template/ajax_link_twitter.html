@@ -1,0 +1,37 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c"
+	style="width: 380px;">
+<h3><span id="order-pay-dialog-close" class="close"
+	onclick="X.get( WEB_ROOT + '/ajax/unset.php');return X.boxClose(); ">Close</span>{$INI['system']['couponname']}確認システム</h3>
+
+
+	<!--{if $link_error=Session::Get('link_error',true)}-->
+		<div class="sysmsgw" id="sysmsg-error">
+			<div class="sysmsg">
+				<p>{$link_error}</p>
+
+			</div>
+		</div>
+	<!--{/if}-->
+	<form action="/ajax/link.php" method="post">
+	<p class="info" id="link-dialog-display-id">新規登録、または、既存の{$INI['system']['abbreviation']}のユーザを確認！<br /></p>
+	<div class="contenth">{$carrierusername}@Twitter</div>
+	<div class="contenth">{$email}</div>
+
+	<div style="height: 30px">&nbsp</div>
+	<div class="contenth">Emailアドレス：</div>
+	<div class="contentc">
+		<input id="link-dialog-input-facebook" type="text" name="email"
+		style="" class="f-input" size="20" maxLength="32"
+		/>
+	</div>
+	
+		<input type="hidden" name="action_query" value="twitter_email_query"/>
+	<div style="height: 50px">&nbsp</div>
+	<div class="button">
+		<input id="link-dialog-query" class="formbutton"
+		value="送信" name="update" type="submit">&nbsp;&nbsp;&nbsp;
+
+	</div>
+	<div style="height: 20px">&nbsp</div>
+	</form>
+</div>

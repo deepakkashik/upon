@@ -1,0 +1,68 @@
+<!--{include header}-->
+<div id="content" style="width: 100%; font-family: arial, sans-serif;" >
+	<div id="dashboard" style="background-color:#40bdab;border-bottom: 2px #fbf3cf solid;">
+    <table style="width:100%;font-size:12px;" >
+		<tr>${current_MyPage1('index')}</tr>
+		<tr>${current_MyPage2('index')}</tr>	
+	</table>
+	</div>
+	
+	<div id="content" style="width: 100%; font-family: arial, sans-serif;" >
+	<div style="background-color: #44abaf; padding: 6px 10px;">
+		<span style="margin: 0px;font-weight:bold;font-size: 20px;">購入履歴</span>
+	</div>
+
+<div class="sect">
+<!--  <p class="charge">{$INI['system']['abbreviation']}、この口座に入金，便利に買う！ <span>&raquo;</span>
+<a href="/credit/charge.php">即刻入金</a></p>
+<h3 class="credit-title">いま口座残高は <strong>${moneyit($login_user['money'])}</strong>
+元</h3>-->
+
+	<!--{loop $flows $index $one}-->
+	<div style="margin: 3px; ">
+		<div style="background-color: #a2def0; padding: 5px; font-weight: bold;">
+			<table style="width: 100%; font-size: 12px;">
+				<tr>
+				<td style="text-align: left;">{$option_flow[$one['action']]}&nbsp;-&nbsp;<!--{if $one['action']=='coupon'}-->{$INI['system']['couponname']}ポイント還元<!--{elseif $one['action']=='invite'}-->友達：{$users[$one['detail_id']]['username']}<!--{elseif $one['action']=='buy'}--><a
+				>{$teams[$one['detail_id']]['product']}</a><!--{elseif $one['action']=='refund'}--><a
+				>{$teams[$one['detail_id']]['product']}</a><!--{elseif $one['action']=='charge'}-->オンライン入金<!--{elseif $one['action']=='withdraw'}-->ユーザ提ｰs<!--{elseif $one['action']=='store'}-->オフライン入金<!--{/if}--></td>
+				</tr>
+			</table>
+		</div>
+		<div style="background-color: #a2def0; padding: 5px;">
+			<table style="width: 100%; font-size: 12px;">
+					<div style="color: #000000; margin: 0px 2px;  font-size: 12px;">時間:${date('Y-m-d H:i',$one['create_time'])}</div>
+				<tr>
+					<td style="width: 55%;vertical-align: text-top" class="{$one['direction']}">{$option_flow[$one['direction']]}
+					<a	style="color: #000000; margin: 0px 0px;  font-size: 12px;">収支:</a>
+					<!--{if $one['direction']=='income'}-->
+					<a	style="color: #FF0033; margin: 0px 0px;  font-size: 12px;">収入</a>
+					<!--{else}-->
+					<a	style="color: #0046F4; margin: 0px 0px;  font-size: 12px;">支出</a>
+					<!--{/if}-->
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="width: 55%;vertical-align: text-top">					
+					<div style="color: #000000; margin: 0px 0px;  font-size: 12px;">金額(円):${moneyit($one['money'])}円</div>
+					</td>
+				
+				<td style="text-align: left;"><!--{if $one['action']=='coupon'}-->{$INI['system']['couponname']}ポイント還元<!--{elseif $one['action']=='invite'}-->友達：{$users[$one['detail_id']]['username']}<!--{elseif $one['action']=='buy'}--><a
+				href="/team.php?id={$one['detail_id']}" >詳細</a><!--{elseif $one['action']=='refund'}--><a
+				href="/team.php?id={$one['detail_id']}" >詳細</a><!--{elseif $one['action']=='charge'}-->オンライン入金<!--{elseif $one['action']=='withdraw'}-->ユーザ提ｰs<!--{elseif $one['action']=='store'}-->オフライン入金<!--{/if}--></td>
+			
+				</tr>
+						
+			</table>
+		</div>
+	</div>
+	<!--{/loop}-->
+	<div style="background-color:#20b8d4; color: #ffffff; font-size: 12px; font-weight: bold; text-align: center;line-height: 22px">
+		{$pagestring}
+	</div>
+</div>
+
+</div>
+</div>
+<!--{include footer}-->
