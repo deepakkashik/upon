@@ -39,11 +39,10 @@ if ($facebook_user) { 	//userが存在している
 	if(!(strpos($login_from, "FACEBOOK")===FALSE)){ //リンクが存在している場合
 		ZLogin::Login($facebook_user['id']);	///仅仅是设置$_SESSION
 		Utility::Redirect(get_loginpage(WEB_ROOT . '/index.php'));
-	}else {
-		
-			$_facebookmarking = "facebook_link_dlg";
-			Session::Set('carrierflg',$_facebookmarking);
-			Utility::Redirect(get_loginpage(WEB_ROOT . '/account/login.php'));
+	}else {		
+		$_facebookmarking = "facebook_link_dlg";
+		Session::Set('carrierflg',$_facebookmarking);
+		Utility::Redirect(get_loginpage(WEB_ROOT . '/account/login.php'));
 	}
 }else {	
 	//ユーザが存在していない場合は、ユーザを新規する
