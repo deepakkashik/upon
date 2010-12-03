@@ -204,7 +204,9 @@ function need_login($force=false) {
 		Session::Set('loginpage', $_SERVER['HTTP_REFERER']);
 		Session::Set('loginpagepost', json_encode($_POST));
 	}
-	return redirect(WEB_ROOT . '/account/loginup.php');	
+	//統一する
+	//return redirect(WEB_ROOT . '/account/loginup.php');	
+	return redirect(WEB_ROOT . '/account/login.php');	
 }
 function need_post() {
 	return is_post() ? true : redirect(WEB_ROOT . '/index.php');

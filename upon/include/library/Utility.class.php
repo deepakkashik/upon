@@ -499,9 +499,9 @@ class Utility
 	//　最少と最大の長さを判断する
 	static function ValidStrlen($var, $minLen, $maxLen) {
 		if (strLen($var) < $minLen || strLen($var) > $maxLen) {
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 }
