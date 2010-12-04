@@ -1,0 +1,37 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="signuped">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>確認メールを送信しました</h2></div>
+                <div class="sect">
+                    <h3 class="notice-title">メールアドレスを検証します。</h3>
+                    <div class="notice-content">
+                        <p>ご登録いただいた<strong>{$email}</strong>に、登録確認メールを送信しました。記載されているURLにアクセスしてください。</p>
+					<!--{if $wwwlink}-->
+                        <p class="signup-gotoverify"><a href="{$wwwlink}" target="_blank"><img src="/static/img/signup-email-link.gif"></a></p>                    
+					<!--{/if}-->
+					</div>
+                    <div class="help-tip">
+                        <h3 class="help-title">登録確認メールが届かないときは？</h3>
+                        <ul class="help-list">
+                            <li>迷惑メールフォルダに入っていませんか？</li>
+                            <li>見つからない時は、<a href="/account/verify.php?email=${urlEncode($email)}">こちらをクリックして</a>もう一度登録確認メールを送信してください。{$_SESSION['unemail']}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

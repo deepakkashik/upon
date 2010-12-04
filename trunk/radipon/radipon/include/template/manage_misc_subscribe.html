@@ -1,0 +1,41 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('subscribe')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>お知らせメール読者一覧</h2>
+					<ul class="filter">
+						<li><form action="/manage/misc/subscribe.php" method="get">エリア：<input type="text" name="cs" value="${htmlspecialchars($cs)}" class="h-input" />&nbsp;メールアドレス：<input type="text" name="like" value="${htmlspecialchars($like)}" class="h-input" />&nbsp;<input type="submit" value="検索" class="formbutton"  style="padding:1px 6px;"/><form></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="350">メールアドレス</th><th width="80">エリア</th><th width="350">暗号化キー</th><th width="80">操作</th></tr>
+					<!--{loop $subscribes $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td nowrap>{$one['email']}</td>
+						<td nowrap>{$cities[$one['city_id']]['name']}</td>
+						<td nowrap>{$one['secret']}</td>
+						<td class="op" nowrap><a ask="削除しますか？" href="/ajax/manage.php?action=subscriberemove&id={$one['id']}" class="ajaxlink">削除</a></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="6">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

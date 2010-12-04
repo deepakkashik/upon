@@ -1,0 +1,42 @@
+<!--{include header}-->
+
+
+
+<div id="content" style="width: 100%; font-family: arial, sans-serif;">
+    <div style="background-color: #ffcc00; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+        <span style="margin: 0px;font-weight:bold;font-size: 20px;">店舗・事業主様のお問い合わせ</span>
+    </div>
+</div>
+
+<div style="background-color:#c7c530; border-bottom: 2px #ffffff solid; padding: 5px;">
+	<p><strong>店舗・事業主様のお問い合わせ</strong></p>
+   	<p>{$page['value']}</p>
+   	<span><font color="red">＊</font>必須項目</span>
+    <form id="feedback-user-form" method="post" action="/feedback/suggest.php" >
+    <table style="width:100%">
+       	<tr>
+       		<td><label for="feedback-fullname">お名前</label></td>
+       	</tr>
+       	<tr>
+       		<td><input type="text" size="30" name="title" id="feedback-fullname" value="{$login_user['username']}" require="true" datatype="require" /></td>
+       	</tr>
+       	<tr>
+       		<td><label for="feedback-email-address">メールアドレス</label></td>
+       	</tr>
+       	<tr>
+       		<td><input type="text" size="30" name="contact" id="feedback-email-address" value="{$login_user['email']}" require="true" datatype="require" /></td>
+       	</tr>
+       	<tr><td>当社からのご連絡先メールアドレスをご入力ください。</td></tr>
+       	<tr>
+       		<td><label for="feedback-suggest">リクエスト内容</label></td>
+       	</tr>
+       	<tr>
+       		<td><textarea style="width:100%" rows="5" name="content" id="feedback-suggest" require="true" datatype="require"></textarea></td>
+       	</tr>
+       	<tr><td align="right"><input type="submit" value="送信" name="commit" id="feedback-submit" /></td></tr>
+    </table>
+    </form>
+</div>
+
+
+<!--{include footer}-->

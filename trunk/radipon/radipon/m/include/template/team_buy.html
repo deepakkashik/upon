@@ -1,0 +1,96 @@
+<!--{include header}-->
+
+
+<form action="/team/buy.php?id={$team['id']}" method="post" class="validator" id="Order">
+	<input id="deal-per-number" value="{$team['per_number']}" type="hidden" />   
+	
+	<div id="page" style="background-color:#fbf3cf;">
+	<div id="content"style="background-color:#c7c530">
+		
+			<div style="background-color: #ffcc00; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+			<span style="margin: 0px; font-weight: bold; font-size: 20px;">ご注文内容の確認</span>
+			</div>
+			<div style="margin: 5px 10px; font-weight: bold; font-size: 14px;">クーポン名称</div>
+			<div style="margin: 5px 10px; font-size: 12px;">{$team['title']}</div>
+<div style="margin-bottom: 5px">
+<table
+	style="font-size: 12px; background-color: #A2DEF0; width: 100%; padding-left: 5px">
+	<tr>
+		<td style="width:35%">数量</td>
+		<td style="width:30%">単価</td>
+		<td style="width:30%">合計金額</td>
+	</tr>
+	<tr>
+		<td><select name="quantity"
+			style="font-size: xx-small; font-weight: bold"
+			class="form-select required" id="edit-panes-cart-qty">
+			${current_quantity_select_list($team['per_number'])}
+		</select></td>
+		<td><span>{$currency}</span><span id="deal-buy-price">${moneyit($order['price'])}</span>
+		</td>
+		<td><span>{$currency}</span><span id="deal-buy-total">{$order['quantity']*$team['team_price']}</span>
+		</td>
+	</tr>
+
+	<!--{if $team['delivery']=='express'}-->
+	<tr>
+		<td>配送</td>
+
+		<td><span class="money">{$currency}</span><span
+			id="deal-express-price">{$team['fare']}</span></td>
+
+		<td><span class="money">{$currency}</span><span
+			id="deal-express-total">{$team['fare']}</span></td>
+	</tr>
+	<!--{/if}-->
+	<tr>
+		<td><strong>注文の合計：</strong></td>
+
+		<td></td>
+
+		<td><span class="money">{$currency}</span><b
+			id="deal-buy-total-t">{$order['origin']}</b></td>
+	</tr>
+</table>
+</div>
+<!--{if $team['delivery']=='express'}-->
+			<div style="background-color: #ffcc00; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+			<span style="margin: 0px; font-weight: bold; font-size: 20px;">送付先情報</span>
+			</div>
+			<div style="margin: 5px 5px; font-size: 12px;">
+				<div>送付先</div>
+				<div style="margin: 5px 0px;"><input type="text" size="30" name="realname" id="settings-realname" class="f-input" value="{$login_user['realname']}" require="true" datatype="require" /></div>
+			</div>
+			<div style="margin: 5px 5px; font-size: 12px;">
+				<div>携帯電話</div>
+				<div style="margin: 5px 0px;"><input type="text" size="30" name="mobile" id="settings-mobile" value="{$login_user['mobile']}" require="true" datatype="mobile" maxLength="11" /></div>
+				<div style="margin: 5px 5px; font-size: 12px;">携帯電話番号は事務局からのご連絡に必要です。</div>
+			</div>
+			<div style="margin: 5px 5px; font-size: 12px;">
+				<div>郵便番号</div>
+				<div style="margin: 5px 0px;"><input type="text" size="30" name="zipcode" id="settings-mobile" value="{$login_user['zipcode']}" require="true" datatype="zip" maxLength="6" /></div>
+			</div>
+			<div style="margin: 5px 5px; font-size: 12px;">
+				<div>ご住所</div>
+				<div style="margin: 5px 0px;"><input type="text" size="30" name="address" id="settings-address"  value="{$login_user['address']}" require="true" datatype="require" /></div>
+				<div style="margin: 5px 5px; font-size: 12px;">住所記入例：「東京都港区新橋4-23-4オーツカビル2F」</div>
+			</div>
+			<!--{/if}-->
+			<!--  <div class="field mobile">
+				<label>備考欄</label>
+				<textarea name="remark" style="width:500px;height:80px;padding:2px;">${htmlspecialchars($order['remark'])}</textarea>
+			</div> -->
+			<input id="deal-buy-cardcode" type="hidden" name="cardcode" maxlength="8" value="" />
+			<input type="hidden" name="id" value="{$order['id']}" />
+			<div style="padding:5px 5px 10px 10px"><input type="submit" class="formbutton" name="buy" value="購入する"/></div>
+	        <div ></div>
+		    
+	    </div>
+    
+    </div>
+   
+</form>
+
+
+
+<!--{include footer}-->

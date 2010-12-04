@@ -1,0 +1,58 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c"
+	style="width: 380px;">
+<h3><span id="order-pay-dialog-close" class="close"
+	onclick="X.get( WEB_ROOT + '/ajax/unset.php');return X.boxClose(); ">Close</span>既存アカウント設定</h3>
+	
+	
+	<!--{if $link_error=Session::Get('link_error',true)}-->
+		<div id="sysmsg-error">
+			<div >
+				<p>{$link_error}</p>
+			</div>
+		</div> 
+	<!--{/if}-->
+	<form action="/ajax/link.php" method="post">
+	<p class="info" id="link-dialog-display-id">{$_SESSION["facebook_username"]}様のアカウント({$_SESSION['facebook_email']})は既に本システムには存在しています。既存アカウントのバスワードを入力して、リンクを付けてください。<br /></p>
+	
+	
+	<div style="padding-left:88px">
+		<table>
+			<tr>
+				<td>
+		<div >バスワード：</div>
+				</td>
+				<td style="padding-left:10px">
+			<input id="link-dialog-input-facebook" type="password" name="facebook_password"
+			style="text-transform: uppercase;" class="f-input" maxLength="8"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 style="height:30px;text-align:center;">
+				<a href="/account/repass.php">バスワード忘れた場合</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+		<input type="hidden" name="action_query" value="facebook_query"/>
+	<div style="height: 20px">&nbsp</div>
+	<div class="button" style="padding-left:150px">
+		<input id="link-dialog-query" class="formbutton" value="リンクする" name="update" type="submit"/>
+	</div>
+	<div style="height: 20px">&nbsp</div>
+	</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

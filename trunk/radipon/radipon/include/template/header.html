@@ -1,0 +1,64 @@
+<!--{include html_header}-->
+
+<div id="hdw">
+
+	<div style="height: 20px;background: #ffcc00;z-index: 0;" ></div>
+	<div id="hd">
+		<div id="logo"><a href="/index.php" class="link"><img src="/static/css/i/logo.gif" /></a></div>
+		<div class="guides">
+			<div class="city">
+				<h2>{$city['name']}</h2>
+			</div>
+			<!--{if count($hotcities)>1}-->
+			<div id="guides-city-change" class="change">エリア<span style="color: #993300;margin-left: 3px;">▼</span></div>
+			<div id="guides-city-list" class="city-list">
+				<ul>
+				<!--{loop $cities $czone $ones}-->
+					<!--{loop $ones $one}-->
+					<li class="city-footer">
+						<p class="city_list" style="line-height:14px;">
+						<a href="/city.php?ename={$one['ename']}&r={$currefer}">{$one['name']}
+						<!--{if ($one['flag'])}-->
+						<font color="red">*</font>
+						<!--{/if}-->
+						</a>
+						</p>
+					</li>
+	<!--{/loop}-->
+				<!--{/loop}-->
+				</ul>
+			</div>
+			<!--{/if}-->
+		</div>
+		<ul class="nav cf">${current_frontend()}</ul>
+		<div class="refer">&raquo;&nbsp;<a href="/about/contact.php">お問い合わせ</a>&nbsp;&nbsp;&raquo;&nbsp;<a href="/feedback/seller.php">ご出稿を希望の事業者様</a>
+		</div>
+		<!--{if $login_user}-->
+		<div class="logins">
+			<ul id="account">
+				<B><li class="username">ようこそ♪　{$login_user['username']}！</li></B>
+
+				<li class="login"><a href="/account/logout.php" >ログアウト</a></li>
+				<li class="signup"><a href="/order/index.php" id="myaccount" class="account">マイページ</a></li>
+			</ul>
+			<!--div class="line "></div-->
+		</div>
+		<!--{else}-->
+		<div class="logins">
+			<ul id="account">
+				<li class="login"><a href="/account/login.php" >ログイン</a></li>
+				<li class="signup"><a href="/account/signup.php" >新規登録</a></li>
+			</ul>
+			<!--div class="line "></div-->
+		</div>
+		<!--{/if}-->
+	</div>
+
+</div>
+
+<!--{if $session_notice=Session::Get('notice',true)}-->
+<div class="sysmsgw" id="sysmsg-success"><div class="sysmsg"><p>{$session_notice}</p><span class="close">Close</span></div></div>
+<!--{/if}-->
+<!--{if $session_notice=Session::Get('error',true)}-->
+<div class="sysmsgw" id="sysmsg-error"><div class="sysmsg"><p>{$session_notice}</p><span class="close">Close</span></div></div>
+<!--{/if}-->

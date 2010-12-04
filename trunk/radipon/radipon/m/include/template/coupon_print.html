@@ -1,0 +1,94 @@
+
+<div id="content" style="width: 100%; font-family: arial, sans-serif;">       
+    <div style="background-color: #44abaf; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+        <span style="margin: 0px;font-weight:bold;font-size: 20px;">マイクーポン</span>
+    </div>
+
+	<div style="background-color:#a2dcf0; border-bottom: 2px #ffffff solid; padding: 5px;">
+	<table style="width: 100%; font-size: 16px; border-bottom: 1px #fbf3cf solid; padding-top:10px">
+		<tr>
+			<td ><b>{$team['product']}</b></td>
+		</tr>		
+	</table>
+		
+	<table style="width: 100%; font-size: 12px; border-bottom: 1px #fbf3cf solid; padding-top:10px">
+		<tr>
+			<td ><b>ユーザーID</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left:15px">{$login_user['username']}（{$login_user['email']}）</td>
+		</tr>
+	</table>
+	
+	<table style="width: 100%; font-size: 12px;border-bottom: 1px #fbf3cf solid; padding-top:10px">
+		<tr>
+			<td ><b>有効期限</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left:15px">${date('Y年n月j日', $coupon['expire_time'])}</td>
+		</tr>		
+	</table>
+	
+	<table style="width: 100%; font-size: 12px;border-bottom: 1px #fbf3cf solid; padding-top:10px">
+		<tr>
+			<td ><b>特典内容</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left:15px">{$team['notice']}</td>
+		</tr>		
+	</table>
+	
+	<table style="width: 100%; font-size: 12px;border-bottom: 1px #fbf3cf solid; padding-top:10px">
+        <tr>
+			<td ><b>{$INI['system']['couponname']}の使用方法</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left:15px">1. 本券は{$partner['title']}でのみ有効です。</td>
+		</tr>
+		<tr>
+			<td style="padding-left:15px">2. 本券をプリントアウトしてください（クーポンIDと認証キーが記載されています）</td>			
+		</tr>
+		<tr>
+			<td style="padding-left:15px">3. 本券をお店に持参して提示してください。</td>		
+		</tr>		
+				
+	</table>
+	
+	<table style="width: 100%; font-size: 12px;border-bottom: 1px #fbf3cf solid; padding-top:10px">
+        <tr>
+			<td ><b>クーポンID:{$coupon['id']}</b></td>
+		</tr>
+	</table>
+	
+	<table style="width: 100%; font-size: 12px;border-bottom: 1px #fbf3cf solid; padding-top:10px">
+        <tr>
+			<td ><b>認証キー:{$coupon['secret']}</b></td>
+		</tr>
+	</table>
+
+	<table style="width: 100%; font-size: 12px;border-bottom: 1px #fbf3cf solid; padding-top:10px">
+        <tr>
+			<td ><img src="http://maps.google.com/staticmap?center=40.714728,-73.998672&amp;zoom=14&amp;size=250x250&amp;maptype=mobile&amp;markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc&amp;sensor=false&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSsTL4WIgxhMZ0ZK_kHjwHeQuOD4xQJpBVbSrqNn69S6DOTv203MQ5ufA" alt="マンハッタン南端部のランドマーク" />
+			<br /></td>
+		</tr>
+	</table>
+
+	<table style="width: 100%; font-size: 12px;border-bottom: 1px #fbf3cf solid; padding-top:10px">
+        <tr>
+			<td ><small><a href="http://maps.google.com/staticmap?center=40.714728,-73.998672&amp;zoom=14&amp;size=512x512&amp;maptype=mobile&amp;markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc&amp;sensor=false&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSsTL4WIgxhMZ0ZK_kHjwHeQuOD4xQJpBVbSrqNn69S6DOTv203MQ5ufA">
+			大きな地図で見る</a></small></td>
+		</tr>
+	</table>
+	
+	<table style="width: 100%; font-size: 12px;">
+		<tr>
+			<td style="padding-left:15px">電話番号：{$partner['phone']}</td>
+		</tr>
+	</table>
+	<table style="width: 100%; font-size: 12px;">
+		<tr>
+			<td style="padding-left:15px">店舗住所：{$partner['address']}</td>
+		</tr>
+	</table>
+	</div>
+</div>

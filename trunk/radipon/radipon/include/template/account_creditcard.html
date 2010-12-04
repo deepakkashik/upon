@@ -1,0 +1,53 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="settings">
+<div class="dashboard" id="dashboard">
+	<ul>${current_account('/account/creditcard.php')}</ul>
+</div>
+<div id="content" class="clear settings-box">
+<div class="box clear">
+<div class="box-top"></div>
+<div class="box-content">
+<div class="head"><h2>クレジットカード設定</h2></div>
+<form id="settings-form" method="post" action="/account/creditcard.php" class="validator">
+
+<div class="sect">
+	<div class="field">
+		<label>カード名義：</label>
+        <input name="HolderName" class="f-input" type="text" maxlength="32"　size="32" value="{$card['HolderName']}"/>
+		<span class="hint">半角英字で入力してください。姓名の間は半角スペースを入れてください。例）Taro Yamada</span>
+	</div>
+	<div class="field">
+		<label>クレジットカード番号：</label>
+        <input name='CardNo' class="f-input" type="text" maxlength="32"　size="32"  value="{$card['CardNo']}"/>
+		<span class="hint">半角数字で入力してください。例）1234123412341234</span>
+	</div>
+	<div class="field">
+		<label>有効期限：</label>
+		 <select name="ExpireYear" class="form-select period require" id="edit-cc-exp-year">${option_card_year($card['Expire'])}</select>
+		 <select name="ExpireMonth" class="form-select period require" id="edit-cc-exp-month">${option_card_month($card['Expire'])}</select>
+	</div>
+	<div class="field">
+		<label>セキュリティーコード：</label>
+        <input name="CardPass" class="f-input" type="password" maxlength="10"　size="10" value="{$card['CardPass']}" />
+		<span class="hint">セキュリティーコードの説明はこちら半角数字で入力してください。例）123</span>
+	</div>
+</div>
+     <div class="clear"></div>
+     <div class="act">
+         <input type="submit" value="保存" name="commit" id="settings-submit" class="formbutton"/>
+     </div>
+</form>
+</div>
+<div class="box-bottom"></div>
+</div>
+    </div>
+    <div id="sidebar" class="rail">
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

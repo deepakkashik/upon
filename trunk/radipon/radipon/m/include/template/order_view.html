@@ -1,0 +1,155 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="order-detail">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_account(null)}</ul>
+	</div>
+    <div id="content">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>注文詳細</h2>
+                </div>
+                <div class="sect">
+
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>注文番号：</th>
+        <td class="orderid"><strong>{$order['id']}</strong></td>
+        <th>受注時間：</th>
+        <td><span>${date('Y-m-d H:i',$order['create_time'])}</span></td>
+    </tr>
+</table>
+
+<table cellspacing="0" cellpadding="0" border="0" class="info-table">
+    <tr>
+        <th class="left" width="auto">共同購入項目</th>
+        <th width="35">単価</th>
+        <th width="10"></th>
+        <th width="45">数量</th>
+        <th width="10"></th>
+        <th width="45">小計</th>
+        <th width="150">状態</th>
+    </tr>
+    <tr>
+        <td class="left"><a href="/team.php?id={$order['team_id']}" target="_blank">{$team['title']}</a></td>
+        <td><span class="money">{$currency}</span>${moneyit($order['price'])}</td>
+        <td>x</td>
+        <td>{$order['quantity']}</td>
+        <td>=</td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($order['price']*$order['quantity'])}</td>
+        <td class="status"><!--{if !$express&&!$order['card_id']}-->取引成功<!--{else}-->-<!--{/if}--></td>
+    </tr>
+
+<!--{if $order['card_id']}-->
+    <tr>
+        <td class="left">現金券：{$order['card_id']}</td>
+        <td>${moneyit($order['card'])}</td>
+        <td>x</td>
+        <td>1</td>
+        <td>=</td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($order['card'])}</td>
+        <td class="status">-</td>
+    </tr>
+<!--{/if}-->
+
+<!--{if $express}-->
+    <tr>
+        <td class="left">宅急便</td>
+        <td>${moneyit($team['fare'])}</td>
+        <td>x</td>
+        <td>1</td>
+        <td>=</td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($team['fare'])}</td>
+        <td class="status">-</td>
+    </tr>
+<!--{/if}-->
+
+<!--{if $express||$order['card_id']}-->
+    <tr>
+        <td class="left"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($order['origin'])}</td>
+        <td class="status">取引成功</td>
+    </tr>
+<!--{/if}-->
+
+</table>
+
+<!--{if $order['remark']}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>注文追伸：</th>
+        <td class="other-coupon">${nl2br(htmlspecialchars($order['remark']))}</td>
+    </tr>
+</table>
+<!--{/if}-->
+<!--{if $team['delivery']=='coupon'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>{$INI['system']['couponname']}：</th>
+        <td class="other-coupon"><!--{if empty($coupons)}-->{$INI['system']['couponname']}共同購入成立後、システムから自動的に発券します。<!--{/if}--><!--{loop $coupons $one}--><p>{$one['id']} - {$one['secret']}</p><!--{/loop}--></td>
+    </tr>
+    <tr>
+        <th>使用方法：</th>
+        <td>クーポンを使用するお店で、クーポンを提示しください。お店にて、クーポンの確認を行います。</td>
+    </tr>
+</table>
+<!--{elseif $team['delivery']=='express'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>宅急便：</th>
+	<!--{if $order['express_id']}-->
+        <td>{$option_express[$order['express_id']]}：{$order['express_no']}</td>
+	<!--{else}-->
+        <td class="other-coupon">お待ちください配送される</td>
+	<!--{/if}-->
+    </tr>
+    <tr>
+        <th>宛先：</th>
+        <td>{$order['realname']}</td>
+    </tr>
+    <tr>
+        <th>宛先住所：</th>
+        <td>{$order['address']}</td>
+    </tr>
+    <tr>
+        <th>携帯番号：</th>
+        <td>{$order['mobile']}</td>
+    </tr>
+</table>
+<!--{elseif $team['delivery']=='pickup'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>自分で取る：</th>
+        <td class="other-coupon"></td>
+    </tr>
+    <tr>
+        <th>商品を取る住所：</th>
+        <td>{$team['address']}</td>
+    </tr>
+    <tr>
+        <th>連絡電話：</th>
+        <td>{$team['mobile']}</td>
+    </tr>
+</table>
+<!--{/if}-->
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

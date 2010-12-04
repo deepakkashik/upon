@@ -1,0 +1,68 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+
+<div id="content" class="coupons-box clear mainwide">
+<div class="box clear">
+<div class="box-top"></div>
+<div class="box-content">
+<div class="head">
+<h2>決済失敗一覧</h2>
+
+</div>
+<div class="sect">
+<table id="orders-list" cellspacing="0" cellpadding="0" border="0"
+	class="coupons-table">
+	<tr>
+		<th width="80" nowrap>決済番号</th>
+		<th width="80">オーダー番号</th>
+		<th width="100">チーム番号</th>
+		<th width="80" nowrap>オーダー状態</th>
+		<th width="80" nowrap>ユーザ番号</th>
+		<th width="100">ユーザネーム</th>
+		<th width="120">商品ネーム</th>
+		<th width="100" nowrap>Uponプライス</th>
+		<th width="100" nowrap>マーケットプライス</th>
+		<th width="100">今購入人数</th>
+		
+		
+		
+		
+		
+	</tr>
+	<!--{loop $orders $index $one}-->
+	<tr ${$index%2?'':'class="alt" '} id="allorder-list-id-{$one['id']}">
+		
+		<td>{$one['gid']}</td>
+		<td>{$one['orderid']}</td>
+		<td>{$one['team_id']}</td>
+		<td>{$one['state']}</td>
+		
+		<td>{$one['userid']}</td>
+		<td>{$one['username']}</td>
+		<td>{$one['title']}</td>
+		<td>{$one['team_price']}</td>
+		<td>{$one['market_price']}</td>
+		<td>{$one['now_number']}</td>
+		
+		
+		
+	</tr>
+	<!--{/loop}-->
+	<tr>
+		<td colspan="9">{$pagestring}
+	</tr>
+</table>
+</div>
+</div>
+<div class="box-bottom"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- bd end --></div>
+<!-- bdw end -->
+
+<!--{include manage_footer}-->
