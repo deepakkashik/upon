@@ -1,0 +1,44 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:480px;">
+	<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">Close</span>クーポンの詳細情報</h3>
+	<div style="overflow-x:hidden;padding:10px;" id="dialog-order-id" oid="{$order['id']}">
+	<table width="96%" align="center" class="coupons-table">
+		<tr><td width="120"><b>ユーザー名：</b></td><td>{$user['username']}</td></tr>
+		<tr><td><b>メールアドレス：</b></td><td>{$user['email']}</td></tr>
+		<tr><td><b>クーポン名称：</b></td><td>{$team['title']}</td></tr>
+		<tr><td><b>購入枚数：</b></td><td>{$order['quantity']}</td></tr>
+		<tr><td><b>決済ステータス：</b></td><td>{$paystate[$order['state']]}</td></tr>
+		<tr><td><b>決済内容：</b></td><td><b>${number_format($order['quantity']*$team['team_price'])}</b>円</td></tr>
+		<tr><td><b>購入時刻：</b></td><td>${date('Y/m/d H:i', $order['create_time'])}</td></tr>
+
+	<!--{if $user['mobile']}-->
+		<tr><td><b>電話番号：</b></td><td>{$user['mobile']}</td></tr>
+	<!--{/if}-->
+
+	<!--{if $user['qq']}-->
+		<tr><td><b>QQ：</b></td><td>{$user['qq']}</td></tr>
+	<!--{/if}-->
+
+	<!--{if $user['msn']}-->
+		<tr><td><b>MSN：</b></td><td>{$user['msn']}</td></tr>
+	<!--{/if}-->
+	<!--{if $order['remark']}-->
+	<!--	<tr><td width="80"><b>買い手の伝言：</b></td><td>${htmlspecialchars($order['remark'])}</td></tr>-->
+	<!--{/if}-->
+
+	<!--{if $team['delivery']=='express'}-->
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td width="120"><b>送付先：</b></td><td>{$order['realname']}</td></tr>
+		<tr><td><b>電話番号：</b></td><td>{$order['mobile']}</td></tr>
+		<tr><td><b>送付先住所：</b></td><td>{$order['address']}</td></tr>
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td><b>配送情報：</b></td><td><select name="express_id" id="order-dialog-select-id">${Utility::Option($option_express, $order['express_id'], '配送業者を選択')}</select>&nbsp;<input type="text" name="in" id="order-dialog-input-id" value="{$order['express_no']}" style="width:150px;" maxLength="32" />&nbsp;&nbsp;<input type="submit" value="確認" onclick="return X.manage.orderexpress();"/></td></tr>
+	<!--{/if}-->
+
+	<!-- <!--{if $order['state']=='pay'}-->
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td><b>返金処理：</b></td><td><select name="refund" id="order-dialog-refund-id">${Utility::Option($option_refund, '', '返金方法をを選択')}</select>&nbsp;<input type="submit" value="確認" onclick="return X.manage.orderrefund();"/></td></tr>
+	<!--{/if}--> -->
+
+	</table>
+	</div>
+</div>

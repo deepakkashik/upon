@@ -1,0 +1,17 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c"
+	style="width: 380px;">
+<h3><span id="order-pay-dialog-close" class="close"
+	onclick="return X.boxClose();">Close</span></h3>
+<p class="info">新しく開いた画面で決済を完了してください。</p>
+<p class="notice">支払い完了前に、このウィンドウを閉じないでください。<br>
+支払い完了後、ステータスに応じて下記のボタンをクリックしてください。：</p>
+<p class="act"><input id="order-pay-dialog-succ" class="formbutton"
+	value="支払が完しました了" type="submit"
+	onclick="location.href=WEB_ROOT + '/order/pay.php?id={$order_id}';" />&nbsp;&nbsp;&nbsp;<input
+	id="order-pay-dialog-fail" class="formbutton" value="決済処理中に問題が起きました"
+	type="submit"
+	onclick="location.href=WEB_ROOT + '/order/pay.php?id={$order_id}';" /></p>
+<p class="retry"><!--{if $order_id=='charge'}--><a
+	href="/credit/charge.php"><!--{else}--><a
+	href="/order/check.php?id={$order_id}"><!--{/if}-->&raquo;前画面に戻って、他の決済方式を選択してください。</a></p>
+</div>

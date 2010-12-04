@@ -1,0 +1,177 @@
+<!--{include header}-->
+<!--{if $team['close_time']}-->
+<div id="sysmsg-tip" class="sysmsg-tip-deal-close"><div class="sysmsg-tip-content">終了いたしました</div></div>
+<!--{/if}-->
+<!--{if $order}-->
+<div id="sysmsg-tip" ><div class="sysmsg-tip-content">決済が完了していません<a href="/order/check.php?id={$order['id']}">オーダーを確認して決済を完了</a></div></div>
+<!--{/if}-->
+<div id="content" style="width: 100%; font-family: arial, sans-serif;">
+<div
+	style="background-color: #ffcc00; padding: 6px 10px; border-bottom: 2px #fbf3cf solid;">
+<!--{if $team['close_time']==0}--> 
+<span style="margin: 0px; font-weight: bold; font-size: 20px;">本日のクーポン</span>
+<!-- {else} -->
+<span style="margin: 0px; font-weight: bold; font-size: 20px;">{$city['name']}のクーポン</span>
+<!-- {/if} -->
+
+</div>
+
+<div style="background-color: #c7c530; padding: 5px; font-weight: bold;">
+<table style="width: 100%; font-size: 12px;">
+	<tr>
+		<td style="width: 40%">
+		<div><img alt="{$team['title_m']}"
+			src="${team_image($team['image_m'])}" width="91" height="100"></div>
+		</td>
+		<td valign="top" style="width: 60%;">
+		<div>
+			<span style="margin: 0px;font-weight:bold;font-size: 20px;"><img
+				src="/static/css/i/bg-special-price.png" alt="Upon"
+				width="40" height="40" />${round($discount_rate*100)}%</span>
+			</div>
+		
+		<div style="padding: 5px; font-size: 12px;">{$team['title_m']}</div>
+		</td>
+	</tr>
+</table>
+</div>
+<!--{if $team['close_time']}-->
+<!--{if $team['min_number']>0}-->
+<div style="background-color: #e1e1c9; padding: 2px 10px; font-size: 12;">
+<span>現在</span> <span style="font-size: 16px; color: #e62d66;">{$team['now_number']}</span>人購入。成立
+</div>
+<!-- {else} -->
+<div style="background-color: #e1e1c9; padding: 2px 10px; font-size: 12;">
+販売終了しました
+</div>
+<!--{/if}-->
+<!-- {else} -->
+<div style="background-color: #e1e1c9; padding: 2px 10px; font-size: 12;">
+<span>現在</span> <span style="font-size: 16px; color: #e62d66;">{$team['now_number']}</span>人購入。あと
+<span style="font-size: 16px; color: #e62d66;">{$team['min_number']-$team['now_number']}</span>人で成立
+</div>
+<!--{/if}-->
+<div style="background-color: #c7c530; padding: 5px;">
+<table style="width: 100%; font-size: 12px;">
+	<tr>
+		<td style="width: 60%; vertical-align: text-top">
+		<div style="color: #000000; margin: 0px 2px; font-size: 12px;">通常価格:${number_format($team['market_price'])}円</div>
+		<div style="color: #000000; margin: 0px 2px; font-size: 12px;">割引率:${round($discount_rate*100)}%</div>
+		<div style="color: #000000; margin: 0px 2px; font-size: 12px;">割引額:${number_format($discount_price)}円</div>
+		</td>
+		<td style="width: 40%; vertical-align: text-top">
+		<div style="width: 100%; font-size: 12px; text-align: center;">残り時間</div>
+		<!--{if $team['close_time']}-->
+		<div
+			style="background-color: #ffcc00; color: #ffffff; paddingr 2px; text-align: center;">
+		00:00:00</div>
+		<!-- {else} -->
+		<div
+			style="background-color: #ffcc00; color: #ffffff; paddingr 2px; text-align: center;">
+		<!--{if $left_day>0}--> <span>{$left_day}</span>日<span>{$left_hour}</span>時間<span>{$left_minute}</span>分
+		<!--{else}--> <span>{$left_hour}</span>時間<span>{$left_minute}</span>分<span>{$left_time}</span>秒
+		<!--{/if}--></div>
+		<!--{/if}-->
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+<!--{if $team['close_time']}-->
+<div
+	style="background-color: #20b8d4; color: #ffffff; padding: 0px 10px; text-align: right; font-size: 12px; font-weight: bold; border-bottom: 2px #fbf3cf solid; line-height: 18px">
+販売終了しました</div>
+	<!-- {else} -->
+<div
+	style="background-color: #20b8d4; color: #ffffff; padding: 0px 10px; text-align: right; font-size: 12px; font-weight: bold; border-bottom: 2px #fbf3cf solid; line-height: 18px">
+${number_format($team['team_price'])}円<a
+	href="/team/buy.php?id={$team['id']}"
+	style="font-weight: bold; font-size: 16px;">購入する</a></div>
+<!--{/if}-->
+<div id="deal-stuff" class="cf">
+<div class="clear box box-split">
+<div class="box-top"></div>
+<div class="box-content cf"><!--{if trim(strip_tags($team['detail_m']))}-->
+<div
+	style="background-color: #ffcc00; padding: 10px 10px; border-bottom: 2px #fbf3cf solid;">
+<span style="margin: 0px; font-weight: bold; font-size: 20px;">クーポン詳細情報</span>
+</div>
+<div
+	style="background-color: #c7c530; padding: 5px; border-bottom: 2px #ffffff solid; font-size: 12px;">
+{$team['detail_m']}</div>
+<!--{/if}--> <!--{if trim(strip_tags($team['notice_m']))}-->
+<div
+	style="background-color: #ffcc00; padding: 10px 10px; border-bottom: 2px #fbf3cf solid;">
+<span style="margin: 0px; font-weight: bold; font-size: 20px;">お店の紹介</span>
+</div>
+<div
+	style="background-color: #c7c530; padding: 5px; border-bottom: 2px #fbf3cf solid; font-size: 12px;">
+{$team['notice_m']}</div>
+<!--{/if}-->
+<div
+	style="background-color: #ffcc00; padding: 10px 10px; border-bottom: 2px #fbf3cf solid;">
+<span style="margin: 0px; font-weight: bold; font-size: 20px;">店舗情報</span>
+</div>
+<div
+	style="background-color: #c7c530; padding: 5px; border-bottom: 2px #fbf3cf solid;">
+<table style="width: 100%; font-size: 12px;">
+	<tr>
+		<td style="width: 40%; vertical-align: text-top">提供店舗名</td>
+		<td valign="top"
+			style="width: 60%; vertical-align: text-top; padding-left: 5px;">{$partner['title']}</td>
+	</tr>
+	<tr>
+		<td style="width: 40%; vertical-align: text-top">住所</td>
+		<td valign="top"
+			style="width: 60%; vertical-align: text-top; padding-left: 5px;">{$partner['address']}</td>
+	</tr>
+	<tr>
+		<td style="width: 40%; vertical-align: text-top">電話番号</td>
+		<td valign="top"
+			style="width: 60%; vertical-align: text-top; padding-left: 5px;">{$partner['phone']}</td>
+	</tr>
+	<tr>
+		<td style="width: 40%; vertical-align: text-top">URL</td>
+		<td valign="top"
+			style="width: 60%; vertical-align: text-top; padding-left: 5px;">
+		<a href="{$partner['homepage']}" target="_blank">${domainit($partner['homepage'])}</a></td>
+	</tr>
+	<tr>
+		<td style="width: 40%; vertical-align: text-top">アクセス</td>
+		<td valign="top"
+			style="width: 60%; vertical-align: text-top; padding-left: 5px;">{$partner['location']}</td>
+	</tr>
+	<tr>
+		<td style="width: 40%; vertical-align: text-top">営業情報</td>
+		<td valign="top"
+			style="width: 60%; vertical-align: text-top; padding-left: 5px;">{$partner['other']}</td>
+	</tr>
+</table>
+</div>
+
+<!--{if trim(strip_tags($team['systemreview_m']))}-->
+<div
+	style="background-color: #ffcc00; padding: 10px 10px; border-bottom: 2px #fbf3cf solid;">
+<span style="margin: 0px; font-weight: bold; font-size: 20px;">{$INI['system']['abbreviation']}コメント</span>
+</div>
+<div
+	style="background-color: #c7c530; padding: 5px; border-bottom: 2px #fbf3cf solid; font-size: 12px;">
+{$team['systemreview_m']}</div>
+<!--{/if}--></div>
+</div>
+</div>
+
+<!--{if $team['close_time']}-->
+<div
+	style="background-color: #20b8d4; color: #ffffff; padding: 0px 10px; text-align: right; font-size: 12px; font-weight: bold; line-height: 18px">
+販売終了しました</div>
+	<!-- {else} -->
+<div
+	style="background-color: #20b8d4; color: #ffffff; padding: 0px 10px; text-align: right; font-size: 12px; font-weight: bold; line-height: 18px">
+${number_format($team['team_price'])}円<a
+	href="/team/buy.php?id={$team['id']}"
+	style="font-weight: bold; font-size: 16px;">購入する</a></div>
+<!--{/if}-->
+
+
+<!-- bdw end --> <!--{include footer}-->

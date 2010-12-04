@@ -1,0 +1,13 @@
+alter table team add is_shown_m tinyint(1) NOT NULL;
+alter table team add title_m varchar(128) NOT NULL;
+alter table team add summary_m text NOT NULL;
+alter table team add notice_m text NOT NULL;
+alter table team add image_m varchar(128) DEFAULT NULL;
+alter table team add detail_m text NOT NULL;
+alter table team add userreview_m text NOT NULL;
+alter table team add systemreview_m text NOT NULL;
+
+alter table user add login_from varchar(256);
+update user set login_from="SELF";
+
+alter table user add uid varchar(32) DEFAULT NULL;

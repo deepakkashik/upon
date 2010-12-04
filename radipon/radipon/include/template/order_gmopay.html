@@ -1,0 +1,144 @@
+<!--{include header}-->
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+
+<form action="/order/gmopay.php?id={$order['id']}" method="post" class="validator">
+
+<div id="content">
+
+    <div id="deal-buy" class="box">
+        <div class="box-top"></div>
+        <div class="box-content">
+            <div class="head"><h2>購入内容の確認</h2></div>
+            <div class="sect">
+                <table class="order-table">
+                    <tr>
+                        <th class="deal-buy-desc">クーポン名称</th>
+                        <th class="deal-buy-quantity">枚数</th>
+                        <th class="deal-buy-multi"></th>
+                        <th class="deal-buy-price">価格</th>
+                        <th class="deal-buy-equal"></th>
+                        <th class="deal-buy-total">合計</th>
+                    </tr>
+                    <tr>
+                        <td class="deal-buy-desc">{$team['title']}</td>
+                        <td class="deal-buy-quantity">{$order['quantity']}</td>
+                        <td class="deal-buy-multi">x</td>
+                        <td class="deal-buy-price" id="deal-buy-price"><span class="money">{$currency}<span>${number_format($team['team_price'])}</td>
+                        <td class="deal-buy-equal">=</td>
+                        <td class="deal-buy-total" id="deal-buy-total"><span class="money">{$currency}</span>${number_format($order['quantity']*$team['team_price'])}</td>
+                    </tr>
+					<!--{if $team['delivery']=='express'}-->
+					<tr>
+						<td class="deal-buy-desc">配送</td>
+						<td class="deal-buy-quantity"></td>
+						<td class="deal-buy-multi"></td>
+						<td class="deal-buy-price"><span class="money">{$currency}</span><span id="deal-express-price">${number_format($team['fare'])}</span></td>
+						<td class="deal-buy-equal">=</td>
+						<td class="deal-buy-total"><span class="money">{$currency}</span><span id="deal-express-total">${number_format($team['fare'])}</span></td>
+					</tr>
+					<!--{/if}-->
+					<!--{if $order['card']>0}-->
+				   <tr id="cardcode-row">
+						<td class="deal-buy-desc">バウチャー：<span id="cardcode-row-n">{$order['card_id']}</span></td>
+						<td class="deal-buy-quantity"></td>
+						<td class="deal-buy-multi"></td>
+
+						<td class="deal-buy-price"><span class="money">{$currency}</span>${number_format($order['card'])}</td>
+						<td class="deal-buy-equal">=</td>
+						<td class="deal-buy-total">-<span class="money">{$currency}</span><span id="cardcode-row-t">${number_format($order['card'])}</span></td>
+					</tr>
+					<!--{/if}-->
+
+					<tr class="order-total">
+                        <td class="deal-buy-desc"><strong>合計支払金額：</strong></td>
+                        <td class="deal-buy-quantity"></td>
+                        <td class="deal-buy-multi"></td>
+                        <td class="deal-buy-price"></td>
+                        <td class="deal-buy-equal">=</td>
+                        <td class="deal-buy-total"><span class="money">{$currency}</span>${number_format($order['origin'])}</td>
+                    </tr>
+                </table>
+			</div>
+		</div>
+		<div class="box-bottom"></div>
+	</div>
+
+    <div id="deal-buy" class="box">
+	        <div class="box-top"></div>
+	        <div class="box-content">
+	            <div class="head"><h2>お客様の基本情報</h2></div>
+	            <div class="sect">
+	            <table class="order-table">
+	                <tr>
+	                    <td class="deal-buy-desc">名前：</td>
+	                    <td class="deal-buy-desc">
+	                    <input name="realname" class="f-input" type="text" maxlength="32"　size="32" value="{$update['realname']}"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="deal-buy-desc">郵便番号：</td>
+	                    <td class="deal-buy-desc">
+	                    <input name="zipcode" class="f-input" type="text" maxlength="32"　size="32" value="{$update['zipcode']}"/>
+	                    </td>
+					</tr>
+					<tr>
+	                    <td class="deal-buy-desc">アドレス：</td>
+	                    <td class="deal-buy-desc">
+	                    <input name="address" class="f-input" type="text" maxlength="150"　size="300" style="width:480px" value="{$update['address']}"/>
+	                    </td>
+	                </tr>
+	            </table>
+	            </div>
+	        </div>
+	        <div class="box-bottom"></div>
+	</div>        
+
+
+</div>
+
+<div id="content" class="clear settings-box">
+<div class="box clear">
+<div class="box-top"></div>
+<div class="box-content">
+<div class="head"><h2>お支払設定</h2></div>
+
+<div class="sect">
+	<div class="field">
+		<label>カード名義：</label>
+        <input name="HolderName" class="f-input" type="text" maxlength="32"　size="32" value="{$card_post['HolderName']}"/>
+		<span class="hint">半角英字で入力してください。姓名の間は半角スペースを入れてください。例）Taro Yamada</span>
+	</div>
+	<div class="field">
+		<label>クレジットカード番号：</label>
+        <input name='CardNo' class="f-input" type="text" maxlength="32"　size="32"  value="{$card_post['CardNo']}"/>
+		<span class="hint">半角数字で入力してください。例）1234123412341234</span>
+	</div>
+	<div class="field">
+		<label>有効期限：</label>
+		 <select name="ExpireYear" class="form-select period require" id="edit-cc-exp-year">${option_card_year($card_post['Expire'])}</select>
+		 <select name="ExpireMonth" class="form-select period require" id="edit-cc-exp-month">${option_card_month($card_post['Expire'])}</select>
+	</div>
+	<div class="field">
+		<label>セキュリティーコード：</label>
+        <input name="CardPass" class="f-input" type="password" maxlength="10"　size="10" value="{$card_post['CardPass']}" />
+		<span class="hint">セキュリティーコードの説明はこちら半角数字で入力してください。例）123</span>
+	</div>
+</div>
+     <div class="clear"></div>
+     <div class="act">
+         <input type="submit" value="送信" name="commit" id="settings-submit" class="formbutton"/>
+     </div>
+
+</div>
+<div class="box-bottom"></div>
+</div>
+</div>
+
+</form>
+
+<div id="sidebar">	</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

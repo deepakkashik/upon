@@ -1,0 +1,19 @@
+<div class="sbox">
+<div class="sbox-top"></div>
+<div class="sbox-content">
+<div class="side-tip">
+	<h4>{$login_user['username']}様のプロファイル</h4>
+	<!--{if $login_user['avatar']}-->
+		<div style="margin-top:5px;margin-bottom:5px">
+			<img src="${user_image($login_user['avatar'])}"/>
+		</div>		
+	<!--{/if}-->
+	<div style="font-size:12px">
+		メールアドレス：{$login_user['email']}<br />
+		ユーザID：{$login_user['username']}<br />
+		
+	</div>
+</div>
+</div>
+<div class="sbox-bottom"></div>
+</div>

@@ -1,0 +1,20 @@
+<!--{include header}-->
+
+<div style="background-color:#ffcc00; padding: 10px 10px; border-bottom: 2px #ffffff solid;">
+	<h2 style="margin: 0px">パスワード変更</h2>
+</div>
+<div style="background-color:#c7c530; border-bottom: 2px #ffffff solid; padding: 0px 10px;">
+	<form method="post" action="/account/reset.php?code={$code}">
+		<div class="form-item" id="edit-name-wrapper">
+			 <label for="edit-name"><br>新しいパスワードス： <span class="form-required" title="このフィールドの入力は必須です。">*</span></label>
+			 <input type="password" maxlength="32" name="password" id="reset-password" size="20" value="" class="form-text required" />
+			 <div class="description">英数字4文字以上。</div>
+			 <label for="edit-name"><br>パスワード再入力： <span class="form-required" title="このフィールドの入力は必須です。">*</span></label>
+			 <input type="password" maxlength="32" name="password2" id="reset-password2" size="20" value="" class="form-text required" />
+		</div>
+	    <input type="hidden" name="code" value="{$code}" />
+	    <input type="submit" value="パスワード変更" class="form-submit"/>
+	</form>
+</div>
+
+<!--{include footer}-->

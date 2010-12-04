@@ -1,0 +1,78 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="signup">
+    <div id="content" class="signup-box">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                	<h2>新規登録</h2><span>&nbsp;と <a href="/account/login.php">ログイン</a></span>
+                </div>
+                <div class="sect">
+                    <form id="signup-user-form" method="post" action="/account/signup.php" class="validator">
+                        <div class="field email">
+                            <label for="signup-email-address">メールアドレス</label>
+                            <input type="text" size="30" name="email" id="signup-email-address" class="f-input" value="{$_POST['email']}" require="true" datatype="email|ajax" url="${WEB_ROOT}/ajax/validator.php" vname="signupemail" msg="|" />
+                            <span class="f-input-tip">現在お使いのメールアドレスを入力してください。</span> 
+                            <span class="hint">パスワードを忘れた際に必要となります。</span>
+                        </div>
+                        <div class="field username">
+                            <label for="signup-username">ニックネーム</label>
+                            <input type="text" size="30" name="username" id="signup-username" class="f-input" value="{$_POST['username']}" datatype="limit|ajax" require="true" min="4" max="16" maxLength="16" url="${WEB_ROOT}/ajax/validator.php" vname="signupname" msg="|" />
+                            <span class="hint">4-16文字を入力してください。</span>
+                        </div>
+                        <div class="field password">
+                            <label for="signup-password">パスワード</label>
+                            <input type="password" size="30" name="password" id="signup-password" class="f-input" require="true" maxLength="16" datatype="require" />
+                            <span class="hint">英数字4文字以上を入力してください。</span>
+                        </div>
+                        <div class="field password">
+                            <label for="signup-password-confirm">パスワード再入力</label>
+                            <input type="password" size="30" name="password2" id="signup-password-confirm" class="f-input" require="true" maxLength="16" datatype="compare" compare="signup-password" />
+                        </div>
+                        <div class="field">
+                            <label for="signup-password-confirm">携帯電話</label>
+                            <input type="text" size="11" name="mobile" id="signup-mobile" maxLength="16"/>
+                            <span class="hint">ハイフンを入れずに入力してください。</span>
+                        </div>
+						<div class="field city">
+                            <label id="enter-address-city-label" for="signup-city">主なご利用エリア</label>
+							<select name="city_id" class="f-city">${Utility::Option(Utility::OptionArray($hotcities, 'id', 'name'), $city['id'])}<option value='0'>その他</option></select>
+                        </div>
+						 <div class="field subscribe">
+                            <input tabindex="3" type="checkbox" value="1" name="subscribe" id="subscribe" class="f-check" checked="checked" />
+                            <label for="subscribe">お知らせメールを受け取る</label>
+                        </div>
+                        <div class="act">
+                            <input tabindex="3" type="checkbox" value="1" name="subscribe1" id="subscribe1" class="f-check" checked="checked"/>
+                            <label for="subscribe1"><a href="/about/member.php" target="_blank">会員規約</a>と<a href="/about/privacy.php" target="_blank">プライバシーポリシー</a>に同意します。</label>
+						</div>
+                        <div class="act">
+                            <input type="submit" value="会員登録" name="commit" id="signup-submit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+	<!--{include block_side_login}-->
+        <div class="sbox">
+            <div class="sbox-top"></div>
+            <div class="sbox-content">
+                <div class="side-tip">
+                    <h2>{$INI['system']['abbreviation']}の会員の方はこちらからログイン可能です</h2>
+                    <p><a href="/account/login.php">ログイン画面はこちら</a>。</p>
+                </div>
+            </div>
+            <div class="sbox-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

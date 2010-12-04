@@ -1,0 +1,38 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="help">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('index')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>{$INI['system']['couponname']}統計情報</h2>
+				</div>
+                <div class="sect">
+					<div class="wholetip clear"><h3>本日の統計</h3></div>
+					<div style="margin:0 20px;">
+						<p>新規登録数：{$user_today_count}</p>
+						<p>クーポン注文数：{$order_today_count}</p>
+					</div>
+					<div class="wholetip clear"><h3>{$INI['system']['couponname']}全体</h3></div>
+					<div style="margin:0 20px;">
+						<p>クーポン総数：{$team_count}</p>
+						<p>ユーザー数：{$user_count}</p>
+						<p>クーポン注文総数：{$order_count}</p>
+						<p>メール購読者総数：{$subscribe_count}</p>
+					</div>
+				</div>
+			</div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

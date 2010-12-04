@@ -1,0 +1,54 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_order('index')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>本日のオーダー</h2>
+					<ul class="filter"><li><form method="get">メールアドレス：<input type="text" name="uemail" class="h-input" value="${htmlspecialchars($uemail)}" >&nbsp;クーポン番号：<input type="text" name="team_id" class="h-input number" value="{$team_id}" >&nbsp;<input type="submit" value="選別" class="formbutton"  style="padding:1px 6px;"/><form></li></ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr>
+						<th width="40">ID</th>
+						<th width="50">番号</th>
+						<th width="340">クーポン名称</th>
+						<th width="180">ユーザー</th>
+						<th width="40" nowrap>枚数</th>
+						<th width="50" nowrap>総額</th>
+						<th width="80" nowrap>ステータス</th>
+						<th width="80" nowrap>配送方法</th>
+						<th width="50" nowrap>操作</th>
+					</tr>
+					<!--{loop $orders $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="order-list-id-{$one['id']}">
+						<td>{$one['id']}</td>
+						<td>{$one['team_id']}</td>
+						<td><a class="deal-title" href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a></td>
+						<td><a href="/ajax/manage.php?action=userview&id={$one['user_id']}" class="ajaxlink">{$users[$one['user_id']]['email']}<br/>{$users[$one['user_id']]['username']}</a></td>
+						<td>{$one['quantity']}</td>
+						<td><span class="money">{$currency}</span>${number_format($one['origin'])}</td>
+						<td><!--{if $one['state']=='pay'}-->決済完了<!--{elseif $one['state']=='unpay'}-->未決済<!--{/if}--></td>
+						<td>{$option_delivery[$teams[$one['team_id']]['delivery']]}${$one['express_id']?'Y':''}</td>
+						<td class="op" nowrap><!--{if $one['state']=='pay'}--><a href="/ajax/manage.php?action=orderview&id={$one['id']}" class="ajaxlink">詳細</a><!--{elseif $one['state']=='unpay'}--><a href="/ajax/manage.php?action=ordercash&id={$one['id']}" class="ajaxlink" ask="本オーダーの入金を確認しますか？">入金確認</a><!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="9">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

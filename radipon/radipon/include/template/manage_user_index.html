@@ -1,0 +1,53 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_user('index')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>ユーザーリスト</h2>
+                    <ul class="filter">
+						<li><form action="/manage/user/index.php" method="get">ID：<input type="text" name="uname" class="h-input" value="${htmlspecialchars($uname)}" >&nbsp;メールアドレス：<input type="text" name="like" class="h-input" value="${htmlspecialchars($like)}" >&nbsp;<select name="ucity" style="width:120px;">${Utility::Option(option_category('city'), $ucity, '全てのエリア')}</select>&nbsp;<input type="submit" value="フィルタ" class="formbutton"  style="padding:1px 6px;"/><form></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="50">ID</th><th width="200">ユーザー</th><th width="100" nowrap>氏名</th><th width="100" nowrap>エリア</th>
+<!--
+<th width="40">残額</th>
+-->
+<th width="100">郵便番号</th><th width="120">IPアドレス<BR>登録時刻</th><th width="100">電話番号</th><th width="120">操作</th></tr>
+					<!--{loop $users $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}</td>
+						<td>{$one['email']}<br/>{$one['username']}</td>
+						<td>${$one['realname']?$one['realname']:'----';}</td>
+						<td><!--{if $one['city_id']}-->{$hotcities[$one['city_id']]['name']}<!--{else}-->ほか<!--{/if}--></td>
+<!--
+						<td>
+<span class="currency">{$currency}</span>${moneyit($one['money'])}</td>
+-->
+						<td>{$one['zipcode']}</td>
+						<td>{$one['ip']}<br/>${date('Y/m/d h:i', $one['create_time'])}</td>
+						<td>{$one['mobile']}</td>
+						<td class="op"><a href="/ajax/manage.php?action=userview&id={$one['id']}" class="ajaxlink">詳細</a>｜<a href="/manage/user/edit.php?id={$one['id']}">編集</a></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="8">{$pagestring}</td></tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

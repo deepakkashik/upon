@@ -1,0 +1,54 @@
+<!--{include header}-->
+
+<div style="background-color:#A2DEF0;">
+	<div id="dashboard" style="background-color:#40bdab;border-bottom: 2px #fbf3cf solid;">
+    <table style="width:100%;font-size:12px;" >
+		<tr>${current_loginin('index')}</tr>
+	</table>
+	</div>
+	<div style="background-color: #ffcc00; padding: 6px 10px;border-bottom: 2px #fbf3cf solid;">
+		<span style="margin: 0px;font-weight:bold;font-size: 20px;">ログイン</span>
+	</div>
+	
+	<div style="background-color:#c7c530; border-bottom: 2px #ffffff solid; padding: 0px 10px;">
+
+		<!-- {if ($mobileFlg === 'show')} -->
+		<form id="login-user-form" method="post" action="/account/login.php">
+			<div>
+				<input type="hidden" name="loginType" value="mobileUidLogin"/>
+	            <input type="submit" value="固有番号でログイン" name="commit" id="login-submit"/>
+	        </div>
+		</form>
+		<!-- {/if} -->
+	    <form id="login-user-form" method="post" action="/account/login.php">
+	        <div>
+	            <label for="login-email-address"><br>ユーザーネーム： <span title="このフィールドの入力は必須です。">*</span></label>
+				<input type="text" maxlength="60" name="email" id="login-email-address" size="30" value="" />
+				<div >ユーザ名またはメールアドレスのいずれかでログインすることができます。</div>
+	        </div>
+	        <div>
+				<label for="login-password"><br>パスワード： <span title="このフィールドの入力は必須です。">*</span></label>
+				<input type="password" name="password" id="login-password"  maxlength="128"  size="30" />
+				<div>パスワードは大文字と小文字を区別します。</div>
+			</div>
+			<div style="margin: 3px; "></div>
+	        <div>
+	        	<input type="hidden" name="loginType" value="emailLogin"/>
+	            <input type="submit" value="ログイン" name="commit" id="login-submit"/>
+	            <!-- {if ($mobileFlg === 'check')} -->
+	            <input type="checkbox" name="mobileChk" value="{$mobileCD}">固有番号を記憶
+	            <!-- {/if} -->
+			</div>
+			<div style="margin: 10px; "></div>	
+			<div>
+ 			<label>※はじめてご利用の方へ、<a href="/account/signup.php" target="_blank">こちら</a>会員登録（無料）をして下さい。</label>
+			<label> &nbsp; </label>
+			</div>
+			<div><label> &nbsp; </label></div>
+			
+	    </form>
+	    <div style="margin: 3px; "></div>	
+	    </div>			
+</div>
+
+<!--{include footer}-->

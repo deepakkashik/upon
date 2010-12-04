@@ -1,0 +1,28 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:480px;">
+	<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">Close</span>クーポンの詳細情報</h3>
+	<div style="overflow-x:hidden;padding:10px;">
+	<table width="96%" align="center" class="coupons-table">
+		<tr><td width="140"><b>クーポン名称：</b></td><td><b>{$team['title']}</b></td></tr>
+		<tr><td><b>クーポン掲載期間：</b></td>
+                        <td>開始：<b>${date('Y/m/d H:i',$team['begin_time'])}</b>
+                        <BR>終了：<b>${date('Y/m/d H:i',$team['end_time'])}</b></td></tr>
+
+		<tr><td><b>ステータス：</b></td><td><span style="color:#F00;font-weight:bold;">${state_explain($team)}</span><!--{if $team['close_time']&&$team['now_number']>=$team['min_number']&&$team['delivery']!='express'}-->&nbsp;&nbsp;<span style="color:#F8C;font-weight:bold;"><!--{if ($team['teamcoupon'])}-->&lt;{$INI['system']['couponname']}掲載中&gt;<!--{else}-->&lt;販売終了&gt;<!--{/if}--></span><!--{/if}--></td></tr>
+		<tr><td><b>購入可能枚数：</b></td><td>最少：{$team['min_number']}&nbsp;&nbsp;&nbsp;&nbsp;最大：${$team['max_number']==0?'制限なし':$team['max_number']}</td></tr>
+		<tr><td><b>価格情報：</b></td><td>通常価格：<b>${number_format($team['market_price'])}</b>円&nbsp;&nbsp;&nbsp;&nbsp;販売価格：<b>${number_format($team['team_price'])}</b>円</td></tr>
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td><b>販売数量：</b></td><td><b>{$team['now_number']}</b>枚（現在までに<b>{$paycount}</b>人<b>{$buycount}</b>枚を販売しました。）
+		</td></tr>
+		<!-- <tr><td><b>決済情報：</b></td><td>オンライン支払い：<b>${moneyit($onlinepay)}</b>&nbsp;円&nbsp;&nbsp;&nbsp;&nbsp;残高で支払い：<b>${moneyit($creditpay)}</b>&nbsp;円</td></tr> -->
+		<tr><td><b>売上情報：</b></td><td><b>${number_format($team['now_number']*$team['team_price'])}</b>円</td></tr>
+	<!--{if $team['needline']}-->
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td colspan="2">
+			<!--{if $team['noticesubscribe']}--><button style="padding:0;" id="dialog_subscribe_button_id" onclick="if(confirm('本クーポンをお知らせメールで配信しますか？')){this.disabled=true;return X.misc.noticenext({$team['id']},0);}">お知らせメール送信&nbsp;(<span id="dialog_subscribe_count_id">0</span>/{$subcount})</button>&nbsp;<!--{/if}-->
+			<!--{if $team['noticesms']}--><button id="dialog_sms_button_id" onclick="if(confirm('クーポンをメールで送信しますか？')){this.disabled=true;return X.misc.noticesms({$team['id']},0);}">クーポン再送信&nbsp;(<span id="dialog_sms_count_id">0</span>/{$couponcount})</button>&nbsp;<!--{/if}-->
+			<!--{if $team['teamcoupon']}--><button onclick="this.disabled=true;return X.manage.teamcoupon({$team['id']});">クーポン初回送信&nbsp;({$couponcount}/{$buycount})</button>&nbsp;<!--{/if}-->
+		</td></tr>
+	<!--{/if}-->
+	</table>
+	</div>
+</div>
