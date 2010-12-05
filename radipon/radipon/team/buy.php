@@ -22,10 +22,18 @@ $order = DB::LimitQuery('order', array(
 	'one' => true,
 ));
 
+//既にこのクーポンを購入される数量
+$order_quantity = 0;
 //既にこのクーポンを購入されている場合：
-if ( $order && $order['state'] != 'unpay' ) {
-	Session::Set('error', TEAM_BUY_ERRBUYONE);
-	Utility::Redirect( WEB_ROOT . "/team.php?id={$id}");
+if ( $order )
+{
+	//購買数取得
+	$order_quantity = $order['quantity'];
+	if ( $order['state'] != 'unpay' && $order_quantity >= $team['per_number'] ) 
+	{
+		Session::Set('error', TEAM_BUY_ERRBUYONE);
+		Utility::Redirect( WEB_ROOT . "/team.php?id={$id}");
+	}
 }
 
 if ( $_POST ) {
@@ -35,7 +43,7 @@ if ( $_POST ) {
 		Session::Set('error', TEAM_BUY_ERRGT);
 		Utility::Redirect( WEB_ROOT . "/team/buy.php?id={$team['id']}");
 	}
-	elseif ( $team['per_number'] > 0 && $table->quantity > $team['per_number'] ) {
+	elseif ( $team['per_number'] > 0 && $table->quantity > ($team['per_number'] + $order_quantity) ) {
 		Session::Set('error', TEAM_BUY_ERRRANGE);
 		Utility::Redirect( WEB_ROOT . "/team/buy.php?id={$team['id']}");
 	}
