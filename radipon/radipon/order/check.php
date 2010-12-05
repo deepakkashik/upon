@@ -48,4 +48,4 @@ if ( $order['state'] == 'unpay' ) {
 	die(include template('order_check'));
 }
 
-Utility::Redirect( WEB_ROOT . "/order/view.php?id={$id}");
+Utility::Redirect( WEB_ROOT . "/order/view.php?id={$order_id}");
