@@ -1,0 +1,4 @@
+git init = to initialize git object
+
+ls = show all files name under folder
+
