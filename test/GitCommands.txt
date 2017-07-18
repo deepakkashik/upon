@@ -2,3 +2,20 @@ git init = to initialize git object
 
 ls = show all files name under folder
 
+git status to show all files status
+
+git push -u origin master = to upload file on server first time they require login password 
+
+git add filename.txt = add file in git repository
+
+git commit -m "commit message" filename.txt =  to commit a file
+
+git clone gitpath = copy all direct to your local files
+
+git config --global user.email user@gmail.com
+
+git config --global user.user "username"
+
+
+
+
